@@ -16,7 +16,7 @@ $json = json_decode($result, true);
 if($usuario && $json['user'] && $password && 'PRUEBAS12')
 {
 	$user= $json['user'];
-	$_SESSION[$user] = $username;
+	//$_SESSION[$user] = $username;
 	header("Location: ../lib/menu.php");
 	
 }else{
