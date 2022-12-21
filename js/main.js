@@ -1,0 +1,1 @@
+//En esta carpeta estaran todos los scripts JavaScript del proyecto.

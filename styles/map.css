@@ -1,0 +1,106 @@
+#sidebar {
+	width: 40%;
+	height: 100vh;
+	background: #b8d2ec;
+  }
+/*body {
+	margin: 300;
+	padding: 200;
+}*/
+#map{ 
+	
+	width:890px; 
+	height:750px;
+		 
+}
+#log, #tracks tr td { 
+	border: 2px solid #ffffff00; 
+}
+#tracks { 
+	width: 500px; 
+}
+.close_btn { 
+	text-align: center; 
+	vertical-align: middle; 
+	cursor: pointer; 
+}
+
+/*.columna {
+	width:20%;
+	float: left;
+	position: relative;
+	top:15px;
+	left: 0%;
+	width: 50%;
+	height: 100%;
+  }
+
+.contenedor{
+	height: 49%;
+	background-color: #d8e5f1;
+	position: sticky;
+	margin: 1% 1%;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	column-fill: 30%;
+  }
+  /*.columna {
+	width:20%;
+	float: left;
+	position: relative;
+	top:15px;
+	left: 0%;
+	width: 31%;
+	height: 100%;
+  }*/
+  .contenedor2{
+	height: 49%;
+	background-color: #8499ac;
+	margin: 1% 1%;	
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	column-fill: 30%;
+  }
+  /*.column {
+	width:10%;
+	float: left;
+	position: relative;
+	top: 190px;
+	left: -33%;
+	width: 31%;
+	height: 15%;
+	
+  }
+  /*Tabla */
+  .wui-input {
+    box-sizing: border-box;
+    min-height: 22px;
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--button-border-radius);
+    padding: var(--input-padding-y) var(--input-padding-x);
+    font-size: 1rem;
+    text-align: left;
+    font-family: inherit;
+    color: var(--input-color);
+    resize: none;
+    outline: none;
+}
+.control_3Z7a {
+    flex: 1;
+    width: auto;
+    width: var(--form-group-control-width,auto);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 22px;
+}
+.box_BbA3 {
+    box-sizing: border-box;
+    min-width: 0;
+}
+.box_BbA3 {
+    box-sizing: border-box;
+    min-width: 0;
+}
