@@ -17,7 +17,7 @@ if($usuario && $json['user'] && $password && 'PRUEBAS12')
 {
 	$user= $json['user'];
 	//$_SESSION[$user] = $username;
-	header("Location: ../lib/menu.php");
+	header("Location: ../views/menu.php");
 	
 }else{
 	echo 'El Usuario o password es incorrecto, "<a href="index.php">vuelva a intenarlo</a>.<br/>';
