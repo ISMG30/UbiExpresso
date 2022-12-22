@@ -37,7 +37,7 @@
 	<form action="../Panel.php" method="post">
 		<h1> llenado de combustible</h1>
 		<div><input type="hidden" name="opcion" value="4"></div>
-		<div>Unidad<input type="text" name="unidad" value="Jugador"></div>
+		<div>Unidad<input type="text" name="unidad" value="C. ROJA SN-75-866"></div>
 		<!--div>Unidades<select type="textbox" name="unidad"></div-->
 		<div><button class="subit">OBTENER JSON co
 <script>

@@ -45,10 +45,10 @@
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/Ubiexpresso/lib/Unidad.php" id="unidades">Unidades</a>
+                            <a class="nav-link" href="http://localhost/Ubiexpresso/views/Unidad.php" id="unidades">Unidades</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/Ubiexpresso/lib/mapa.html" href="#">Recoridos</a>
+                            <a class="nav-link" href="http://localhost/Ubiexpresso/views/mapa.html" href="#">Recoridos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Gasolina</a>

@@ -1,6 +1,6 @@
 <?php
 
-include_once '../config/wialon.php';
+include_once './config/wialon.php';
 
 class ControllerUbiExpress {
 
