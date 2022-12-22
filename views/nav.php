@@ -30,7 +30,7 @@
                             </a>                         
                             <ul class="dropdown-menu dropdown-menu-end aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="../config/logout.php">
                                         <span class="me-2">
                                             <i class="bi bi-door-open"></i>
                                         </span>

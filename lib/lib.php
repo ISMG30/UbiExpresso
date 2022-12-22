@@ -10,3 +10,10 @@
     <script src="../lib/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
     <!-- icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+<!-- Toastr -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../lib/Toastr/toastr.min.css">
+    <!-- JavaScript -->
+    <script src="../lib/Toastr/toastr.min.js"></script>

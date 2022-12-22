@@ -4,7 +4,7 @@
 
     <div class="offcanvas-header">
 
-        <h5 class="offcanvas-title text-center" id="offcanvasExampleLabel">Bienvenido</h5>
+        <h5 class="offcanvas-title text-center" id="offcanvasExampleLabel"><?php echo $_SESSION['user'] ?></h5>
         <button type="button" class="btn-close text-reset btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -19,7 +19,7 @@
                 </li>
                 <!-- /Divisory line between sections -->
 
-                <a class="nav-link px-3 active" href="#">
+                <a class="nav-link px-3 active" href="Unidad.php">
 
                     <span class="me-2">
                     <i class="bi bi-car-front-fill"></i>
@@ -43,7 +43,7 @@
 
                 </a>
 
-                <a class="nav-link px-3 active" href="#">
+                <a class="nav-link px-3 active" href="Gasolina.php">
 
                     <span class="me-2">
                     <i class="bi bi-fuel-pump-fill"></i>
