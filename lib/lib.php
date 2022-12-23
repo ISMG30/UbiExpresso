@@ -17,3 +17,18 @@
     <link rel="stylesheet" href="../lib/Toastr/toastr.min.css">
     <!-- JavaScript -->
     <script src="../lib/Toastr/toastr.min.js"></script>
+
+<!-- DataTables -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../lib/DataTables/datatables.min.css">
+    <!-- JavaScript -->
+    <script src="../lib/DataTables/datatables.min.js"></script>
+    <!-- CSS BOOTSTRAP 5 -->
+    <link rel="stylesheet" href="../lib/DataTables/DataTables-1.13.1/css/dataTables.bootstrap5.min.css">
+    <!-- JavaScript BOOTSTRAP 5 -->
+    <script src="../lib/DataTables/DataTables-1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+<!-- ChartJS -->
+<script src="../lib/ChartJS/Chart.min.js"></script>
+<script src="../lib/ChartJS/chartjs-script.js"></script>
