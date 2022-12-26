@@ -21,7 +21,7 @@ include_once "../config/validateUser.php";
         <div class="container-fluid">
             <div class="row justify-content-sm-center mt-5">
                 <div class="col-sm-auto text-center">
-                    <label class="form-label fw-bold">Unidades Asiganadas</label>
+                    <label class="form-label fw-bold fs-3">Unidades Asiganadas</label>
                 </div>
             </div>
             <div class="row justify-content-sm-end mt-3">
@@ -35,14 +35,17 @@ include_once "../config/validateUser.php";
                     <?php include_once "tables/tableUnits.php" ?>
                 </div>
                 <div id="chart" class="col flex-grow-1" style="height: 500px; width: 200px;">
-                    <canvas id="canvasChart">
-
-                    </canvas>
+                    <div class="container-chart">
+                        <canvas id="canvasChart">
+    
+                        </canvas>
+                    </div>
                 </div>
             </div>
             
         </div>
     </main>
+    
     <!-- JAVASCRIPT -->
     <script src="../js/gasolina.js"></script>
     <!-- /JAVASCRIPT -->
