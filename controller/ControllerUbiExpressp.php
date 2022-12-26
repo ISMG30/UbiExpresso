@@ -136,29 +136,39 @@ class ControllerUbiExpress {
             'force' => 1,
             'from' => 0,
             'to'=>0,
-            'flags' => 0x1
-          );
-          //echo $wialon_api->core_search_items(json_encode($params));
-          $dato = $wialon_api->core_search_items(json_encode($params));
+            'flags' => 4611686018427387903
+          );     
+          $dato=$wialon_api->core_search_items(json_encode($params));
           $dato1 =json_decode($dato, true);
           if(!isset($dato1['error'])){
             //echo  $dato1 ['searchSpec']['propValueMask'];
-            echo $dato1['items']['0']['nm'] ,'/n';
             $id=$dato1['items']['0']['id'];
+            echo 'Id: ', $id, "<br>",  // Id de la Unidad
+                 'Unidad: ', $dato1['items']['0']['nm'], "<br>", //Unidades
+                 'Kilometraje: ',$dato1['items']['0']['cnm'], "<br>"; //Kilometraje
+           
+            
+            
           } 
             $params = array(
                 'unitId'=> $id,
                 'sensores'=> 1,
-                'flags"' => 0x02
+                'flags' => 0x01
               );
              $dato = $wialon_api->unit_calc_last_message(json_encode($params));
              $ver = json_decode($dato, true);
              if(!isset($ver['error'])){
-                echo $ver['1'];
-             }
-             //echo $wialon_api->unit_calc_last_message(json_encode($params));
+               
+              if( $ver && ['1'])
+              {
+                echo 'Combustible: ', $ver['1'], 'L', // Combustible 
+               '<br>', 'km en tiempo real: ', $ver['2'], ' Km/h'; //kilometraje
+              }else{
+              
+               echo 'NO CONTIENE SENSOR DE COMBUSTIBLE';
+              }
+             }    
         }
-
      }
 }
 ?>
