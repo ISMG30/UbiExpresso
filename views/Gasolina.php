@@ -21,7 +21,7 @@ include_once "../config/validateUser.php";
         <div class="container-fluid">
             <div class="row justify-content-sm-center mt-5">
                 <div class="col-sm-auto text-center">
-                    <label class="form-label fw-bold fs-3">Unidades Asiganadas</label>
+                    <label class="form-label text-uppercase fw-bold fs-3">Unidades Asiganadas</label>
                 </div>
             </div>
             <div class="row justify-content-sm-end mt-3">
