@@ -28,8 +28,8 @@ if(!empty($_POST['opcion'])){
     ;
     break;
     case 4: {
-        $unidad = $_POST['unidad'];
-        $dato = $Ubi -> Combustible($unidad);
+        
+        $dato = $Ubi -> Combustible();
     }
    }
 }

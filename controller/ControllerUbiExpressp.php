@@ -117,9 +117,8 @@ class ControllerUbiExpress {
         }
      }
      
-     function Combustible($unidad)
+     function Combustible()
      {
-
         $wialon_api = new Wialon();
         $token = '2f0a8929ad515bb67157ead976434d583BCAEAF887B0551E3F8C07590A59533902946CAA';
         $result = $wialon_api -> login($token);
@@ -130,45 +129,58 @@ class ControllerUbiExpress {
             'spec' => array(
                 'itemsType' => 'avl_unit',
                 'propName'=> 'sys_name',
-                'propValueMask' => $unidad,
+                'propValueMask' =>'*',
                 'sortType' => 'sys_name'
             ),
             'force' => 1,
             'from' => 0,
             'to'=>0,
             'flags' => 4611686018427387903
-          );     
+          );    
           $dato=$wialon_api->core_search_items(json_encode($params));
           $dato1 =json_decode($dato, true);
           if(!isset($dato1['error'])){
-            //echo  $dato1 ['searchSpec']['propValueMask'];
-            $id=$dato1['items']['0']['id'];
-            echo 'Id: ', $id, "<br>",  // Id de la Unidad
-                 'Unidad: ', $dato1['items']['0']['nm'], "<br>", //Unidades
-                 'Kilometraje: ',$dato1['items']['0']['cnm'], "<br>"; //Kilometraje
-           
-            
-            
-          } 
-            $params = array(
-                'unitId'=> $id,
-                'sensores'=> 1,
-                'flags' => 0x01
-              );
-             $dato = $wialon_api->unit_calc_last_message(json_encode($params));
-             $ver = json_decode($dato, true);
-             if(!isset($ver['error'])){
+            $var = $dato1['items'];
+
+           for($i=0; $i<count($var); $i++)
+            {  
+                $id=$dato1['items'][$i]['id'];
+                $user = $dato1['items'][$i]['nm'];
+                $km = $dato1['items'][$i]['cnm'];    
+             
+              $params = array(
+              'unitId'=> $id,
+              'sensores'=> 1,
+              'flags' => 0x01
+               ); 
+              $dato = $wialon_api->unit_calc_last_message(json_encode($params));
+              $ver = json_decode($dato, true);
+              if(!isset($ver['error']))
+              { 
                
-              if( $ver && ['1'])
-              {
-                echo 'Combustible: ', $ver['1'], 'L', // Combustible 
-               '<br>', 'km en tiempo real: ', $ver['2'], ' Km/h'; //kilometraje
-              }else{
-              
-               echo 'NO CONTIENE SENSOR DE COMBUSTIBLE';
+                if( $ver && ['1'])
+                 {
+                   $comb = $ver['1']; // Combustible 
+                   $kmh =  $ver['2']; // kilometraje 
+                 
+                
+                 $usuario = array(
+                  'id' => $id,
+                  'user'=> $user,
+                  'km' => $km,
+                  'Combustible' => $comb,
+                  'Km/h Tiempo' => $kmh
+                  );
+                 
+                  echo json_encode($usuario); 
+                }
               }
-             }    
+            }      
+          }
         }
-     }
+      }
+
+
+
 }
 ?>
