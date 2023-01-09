@@ -1,6 +1,6 @@
 <?php
-session_start();
-include_once "../config/validateUser.php";
+// session_start();
+// include_once "../config/validateUser.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@ include_once "../config/validateUser.php";
     <?php include_once "nav.php" ?>
     <?php include_once "lateralMenu.php" ?>
     <main class="mt-5 pt-3">
-        <div class="container-fluid">
+        <div class="container-fluid" style="height: auto">
             <div class="row justify-content-sm-center mt-5">
                 <div class="col-sm-auto text-center">
                     <label class="form-label text-uppercase fw-bold fs-3">Unidades Asiganadas</label>
@@ -30,22 +30,90 @@ include_once "../config/validateUser.php";
                 </div>
             </div>
 
-            <div class="row d-flex mt-3">
-                <div id="table" class="col-4 border border-4 rounded-4" style="height: 500px; min-height: 100%; overflow-y: scroll;">
+            <div class="row justify-content-sm-center mt-3">
+                <div class="col-sm-auto">
+                    <label class="form-label fw-bold">Elija un rango de fechas:</label>
+                </div>
+            </div>
+
+            <div class="row justify-content-sm-center mt-3">
+                <div class="col-sm-auto">
+                    <label class="form-label fw-bold">Del:</label>
+                </div>
+
+                <div class="col-sm-auto">
+                    <input type="date" class="form-control" onchange="" name="dateCheckInicio" id="dateCheckInicio">
+                </div>
+
+                <div class="col-sm-auto">
+                    <label class="form-label fw-bold">al:</label>
+                </div>
+
+                <div class="col-sm-auto">
+                    <input type="date" class="form-control" onchange="" name="dateCheckFin" id="dateCheckFin">
+                </div>
+
+            </div>
+
+            <div class="row justify-content-center mt-4" style="height: 100%;">
+                <div id="table" class="col-auto text-center" style="height: 100%">
                     <?php include_once "tables/tableUnits.php" ?>
                 </div>
-                <div id="chart" class="col flex-grow-1" style="height: 500px; width: 200px;">
+                <div class="col text-center">
                     <div class="container-chart">
                         <canvas id="canvasChart">
-    
                         </canvas>
                     </div>
                 </div>
             </div>
-            
-        </div>
+
+            <div id="statistics" class="row justify-content-center mt-4 py-4 mb-5">
+                <div class="col-auto text-center">
+                    <label class="form-label text-uppercase fw-bold fs-5">Estadisticas</label>
+                </div>
+
+                <div class="row mt-3">
+                    <div id="gas-consumed" class="col-4 text-center ms-3">
+                        <label class="form-label text-uppercase fw-bold fs-6">Recargas de gasolina</label>
+                        <div class="row justify-content-md-center">
+                            <?php include_once "tables/table_gasoline_refills.php" ?>
+                        </div>
+                    </div>
+                    <div class="col text-center mx-3">
+                        <div class="row justify-content-md-between ms-3">
+                            <div id="km_traveled" class="col-3 text-center my-2">
+                                <label class="form-label text-uppercase fw-bold fs-6">Kilometros recorridos</label>
+                                <div class="row justify-content-center">
+                                    <div id="txt_km_traveled" class="col-auto text-center">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="litters_consumed" class="col-3 text-center my-2">
+                                <label class="form-label text-uppercase fw-bold fs-6">Litros de combustible consumidos</label>
+                                <div class="row justify-content-center">
+                                    <div id="txt_liters_consumed" class="col-auto text-center">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="travel_cost" class="col-3 text-center my-2">
+                                <label class="form-label text-uppercase fw-bold fs-6">Costo total de ruta:</label>
+                                <div class="row justify-content-center">
+                                    <div id="txt_travel_cost" class="col-auto text-center">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
     </main>
-    
+
     <!-- JAVASCRIPT -->
     <script src="../js/gasolina.js"></script>
     <!-- /JAVASCRIPT -->
