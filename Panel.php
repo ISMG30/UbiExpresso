@@ -7,30 +7,34 @@ if(!empty($_POST['opcion'])){
    
    switch($opcion){
     case 1: {
-          $dato = $Ubi->login();
-          return $dato;
-         
+     
+        $dato = $Ubi ->Unidades();
     }
     ;
     break;
+    
+    break;
     case 2: {
-        $unidad= $_POST['unidad'];
-        $dato = $Ubi ->Usuarios($unidad);
-        
-        
+      
+        $dato = $Ubi -> CombustibleKmtotal();
     }
     ;
     break;
     case 3:{
-        $unidad= $_POST['unidad'];
-        $dato = $Ubi ->NUnidad($unidad);
+        $fechaI=$_POST['fechai'];
+        $fechaF=$_POST['fechaf'];
+        $dato =$Ubi-> KmRecorido($fechaI, $fechaF);
     }
     ;
     break;
-    case 4: {
-        
-        $dato = $Ubi -> Combustible();
-    }
+    case 4:{
+         $user = $_POST['unidad'];
+         $fechaI = $_POST['fechai'];
+         $fechaF = $_POST['fechaf'];
+         $dato =$Ubi->Posicion1($user, $fechaI, $fechaF);
+     }
+     ;
+     break;
    }
 }
 ?>
