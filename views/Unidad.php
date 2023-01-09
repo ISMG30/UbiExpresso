@@ -9,35 +9,64 @@
 </head>
 <body>
 
-<p>Select unit: <span id="units"></span></p>
 <div id="log"></div>
 	<form action="../Panel.php" method="post">
-		<h2> Usuario</h2>
-    <div><input type="hidden" name="opcion" value="1"></div>
-    <div><button class="nav-link mb-0 px-0 py-1 active ">OBTENER JSON</button>
+		<h4> Unidades</h4>
+				<pre class="prettyprint">
+					<code>
+						method="post"
+						name="opcion" value="1"
+					</code>
+    			</pre>
+			<div><input type="hidden" name="opcion" value="1"></div>
+			<div><button class="subit">OBTENER JSON</button>
 		</div>
 	</form>
 	<form action="../Panel.php" method="post">
-		<h1> Unidades</h1>
-	<div><input type="hidden" name="opcion" value="2"></div>
-	<div>Unidad<input type="text" name="unidad" value="C. ROJA SN-75-866"></div>
-	<!--div>Unidades<select type="textbox" name="unidad"></div-->
-	<div><button class="subit">OBTENER JSON</button>
-	</div>
+	    <h4> Datos de combustible y kilometraje Total</h4>
+				<pre class="prettyprint">
+					<code>
+						method="post"
+						name="opcion" value="2"
+					</code>
+				</pre>
+			<div><input type="hidden" name="opcion" value="2"></div>
+		   <div><button class="subit">OBTENER JSON co</div>
 	</form>
 
 	<form action="../Panel.php" method="post">
-		<h1> Co</h1>
-		<div><input type="hidden" name="opcion" value="3"></div>
-		<div>Unidad<input type="text" name="unidad" value="C. ROJA SN-75-866"></div>
-		<!--div>Unidades<select type="textbox" name="unidad"></div-->
-		<div><button class="subit">OBTENER JSON</button>
-		</div>
+		<h4>Kilometraje por Ruta </h4>
+				<pre class="prettyprint">
+					<code>
+						method="post"
+						name="opcion" value="3"
+						name="fechai" value="15-12-2022 09:00 a.m."
+						name="fechaf" value="15-12-2022 12:00 p.m."
+					</code>
+				</pre>
+				<div><input type="hidden" name="opcion" value="3"></div>
+		<div>De: <input type="datetime-local" name="fechai" value="15-12-2022 09:00 a.m."></div>
+		<div>A:  <input type="datetime-local" name="fechaf" value="15-12-2022 12:00 p.m."></div>
+		<div><button class="subit">OBTENER JSON co</div>
 	</form>
 	<form action="../Panel.php" method="post">
-		<h1> Datos de combustible y kilometraje</h1>
+		<h4> Ruta de una Unidad  </h4>
+				<pre class="prettyprint">
+					<code>
+						method="post"
+						name="opcion" value="4"
+						name="Unidad" value="C. ROJA SN-75-866"
+						name="fechai" value="15-12-2022 09:00 a.m."
+						name="fechaf" value="15-12-2022 12:00 p.m."
+					</code>
+				</pre>
 		<div><input type="hidden" name="opcion" value="4"></div>
-		<div><button class="subit">OBTENER JSON co
+		<div>Unidad<input type="text" name="unidad" value="C. ROJA SN-75-866" ></div>
+		<div>De: <input type="datetime-local" name="fechai" value="15-12-2022 09:00 a.m."></div>
+		<div>A: <input type="datetime-local" name="fechaf" value="15-12-2022 12:00 p.m."></div>
+		<div><button class="subit">OBTENER JSON co</div>
+	</form>
+
 <script>
     $.ajax({
 		url:"Respuesta.php",
@@ -45,8 +74,6 @@
 		data: 'user'
 
 	});
-	
-
-    </script>
+</script>
 	</body>
 </html>
