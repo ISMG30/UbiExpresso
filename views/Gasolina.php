@@ -88,6 +88,11 @@
                                         
                                     </div>
                                 </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-auto text-center">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalKmDetails">Ver detalles</a>                                     
+                                    </div>
+                                </div>
                             </div>
 
                             <div id="litters_consumed" class="col-3 text-center my-2">
@@ -95,6 +100,11 @@
                                 <div class="row justify-content-center">
                                     <div id="txt_liters_consumed" class="col-auto text-center">
                                         
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-auto text-center">
+                                        <a href="#">Ver detalles</a>                                     
                                     </div>
                                 </div>
                             </div>
@@ -106,6 +116,11 @@
                                         
                                     </div>
                                 </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-auto text-center">
+                                        <a href="#">Ver detalles</a>                                     
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -113,6 +128,10 @@
 
             </div>
     </main>
+
+    <!-- MODALS -->
+    <?php include_once 'modals/ModalKmDetails.php' ?>
+    <!-- /MODALS -->
 
     <!-- JAVASCRIPT -->
     <script src="../js/gasolina.js"></script>

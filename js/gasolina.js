@@ -205,7 +205,7 @@ const graphUnit = async (id) => {
 const loadStatistics = async (id,liters,km,dates) => {
   var refills;
   var km_traveled;
-  var liters_consumed;
+  var liters_consumed = 0;
   var total_cost = 0;
   var div_txt_km_traveled = $('#txt_km_traveled').empty();
   var div_txt_liters_consumed = $('#txt_liters_consumed').empty();
@@ -222,7 +222,31 @@ const loadStatistics = async (id,liters,km,dates) => {
 
 
   km_traveled = parseInt(km[km.length-1].km) - parseInt(km[0].km);
-  liters_consumed = parseFloat(liters[0].litros) - parseFloat(liters[liters.length-1].litros);
+  //liters_consumed = parseFloat(liters[0].litros) - parseFloat(liters[liters.length-1].litros);
+
+  var i = 0;
+  // for(liter of liters){
+  //   if(i !== (liters.length - 1)){
+  //     if(liter > liters[i+1]){
+  //       liters_consumed += liter - liters[i+1];
+  //       console.log("litritossss: " + liters_consumed);
+  //       i++;
+  //     }else{
+  //       i++;
+  //     }
+  //   }
+  // }
+  
+  while(i != (liters.length - 1)){        
+    if(liters[i].litros > liters[i+1].litros){      
+      liters_consumed += (liters[i].litros - liters[i+1].litros);    
+      i++;
+    }else{
+      i++;
+    }    
+  }  
+
+
   var c = 0;
   var f = liters[0].fecha_combustible
   liters.forEach(ele => {

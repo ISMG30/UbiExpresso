@@ -24,7 +24,7 @@ session_unset();
                 <div id="contenedorcentrado">
                     <div id="derecho">
                         <div class="titulo">
-                            <h1>UbiExpress</h1>
+                            <h1>UbiExpress</h1>                            
                         </div>
                     </div>
                     <div id="login">
