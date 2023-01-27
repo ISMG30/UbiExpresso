@@ -254,7 +254,7 @@ const loadStatistics = async (id,liters,km,dates) => {
       if(ele.check_combustible === 'inicio'){
         inicio = parseFloat(ele.litros);
       }else{
-        fin = parseInt(ele.litros);
+        fin = parseFloat(ele.litros);
       }
     }else{
       litersDay.push({
@@ -267,7 +267,7 @@ const loadStatistics = async (id,liters,km,dates) => {
       if(ele.check_combustible === 'inicio'){
         inicio = parseFloat(ele.litros);
       }else{
-        fin = parseInt(ele.litros);
+        fin = parseFloat(ele.litros);
       }
     }
     f = ele.fecha_combustible
