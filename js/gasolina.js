@@ -1,5 +1,6 @@
 // var checkeds = [];
 // var typeChart;
+//var inicioDate1 = document.getElementById('dateCheckInicio');
 init()
 
 function init() {
@@ -35,7 +36,8 @@ function init() {
     columns: [
       { data: 'id' },
       { data: 'unidad' },
-      { data: 'seleccionar' }
+      { data: 'seleccionar' },
+      { data: 'descargar' }
     ]
   });
 
@@ -103,12 +105,12 @@ function optionsToastR() {
 //     renderChart(await getDataChart(checkeds, typeChart));
 //   }
 // }
-
+ 
 const graphUnit = async (id) => {
   var title;
   var parametros;
   var dates = [];
-  if ($('#dateCheckInicio').val() == '' && $('#dateCheckFin').val() == '') {
+  if ($('#dateCheckInicio').val()  == '' && $('#dateCheckFin').val() == '') {
     toastr["warning"]("Elija una fecha o un rango de fechas", "No se ha seleccionado una fecha");
     //alert("Elija una fecha o un rango de fechas");
     $('#canvasChart').hide();
@@ -207,6 +209,7 @@ const loadStatistics = async (id,liters,km,dates) => {
   var km_traveled;
   var liters_consumed = 0;
   var total_cost = 0;
+  var total_c = 0;
   var div_txt_km_traveled = $('#txt_km_traveled').empty();
   var div_txt_liters_consumed = $('#txt_liters_consumed').empty();
   var div_txt_travel_cost = $('#txt_travel_cost').empty();
@@ -237,7 +240,7 @@ const loadStatistics = async (id,liters,km,dates) => {
   //   }
   // }
   
-  while(i != (liters.length - 1)){        
+  while(i != (liters.length-1)){        
     if(liters[i].litros > liters[i+1].litros){      
       liters_consumed += (liters[i].litros - liters[i+1].litros);    
       i++;
@@ -246,7 +249,7 @@ const loadStatistics = async (id,liters,km,dates) => {
     }    
   }  
 
-
+  
   var c = 0;
   var f = liters[0].fecha_combustible
   liters.forEach(ele => {
@@ -254,7 +257,7 @@ const loadStatistics = async (id,liters,km,dates) => {
       if(ele.check_combustible === 'inicio'){
         inicio = parseFloat(ele.litros);
       }else{
-        fin = parseInt(ele.litros);
+        fin = parseFloat(ele.litros);
       }
     }else{
       litersDay.push({
@@ -267,7 +270,7 @@ const loadStatistics = async (id,liters,km,dates) => {
       if(ele.check_combustible === 'inicio'){
         inicio = parseFloat(ele.litros);
       }else{
-        fin = parseInt(ele.litros);
+        fin = parseFloat(ele.litros);
       }
     }
     f = ele.fecha_combustible
@@ -276,6 +279,7 @@ const loadStatistics = async (id,liters,km,dates) => {
   litersDay.push({
     date: f,
     liters: inicio-fin
+    
   });
 
 
@@ -300,7 +304,7 @@ const loadStatistics = async (id,liters,km,dates) => {
 
 
   div_txt_km_traveled.append(`<label class="form-label text-uppercase fw-nomal fs-2">${km_traveled} km</label>`);
-  div_txt_liters_consumed.append(`<label class="form-label text-uppercase fw-nomal fs-2">${liters_consumed} L</label>`);  
+  div_txt_liters_consumed.append(`<label class="form-label text-uppercase fw-nomal fs-2">${liters_consumed.toFixed(2)} L</label>`);  
   div_txt_travel_cost.append(`<label class="form-label text-uppercase fw-nomal fs-2">${monedaMX(total_cost)}</label>`);
 }
 
@@ -442,7 +446,6 @@ function getDataChart(liters, km) {
   };
 
   return data;
-
 }
 
 function getOptionsChart(title) {
@@ -648,6 +651,18 @@ function getOptionsChart(title) {
 //     .then(res => res.json())
 //     .then(data => data);
 // }
+const Prueba = async (id) =>{
+    $('#dateCheckFin').val(); 
+    var id= id;
+    var inicioDate = $('#dateCheckInicio').val();
+    var finDate= $('#dateCheckFin').val();
+    if (inicioDate == '' && finDate == '') {
+      toastr["warning"]("Elija una fecha o un rango de fechas", "No se ha seleccionado una fecha");
+    }else{
+      window.location.href=  "../views/dompdf.php?id="+id+"&startDate="+inicioDate+"&endDate="+finDate;
+
+    }
+}
 
 function getLitersDatesBetween(id, startDate, endDate) {
   const data = new URLSearchParams(`id=${id}&startDate=${startDate}&endDate=${endDate}`);
@@ -775,3 +790,13 @@ function renderChart(data, options) {
     options: options
   });
 }
+
+const download = async (id) =>{
+  var dates=[];
+  const imagenLink = document.createElement('a');
+  const canvas = document.getElementById('canvasChart');
+  imagenLink.download =id,dates,'.png';
+  imagenLink.href =canvas.toDataURL('image/png',1);
+  imagenLink.click(); 
+}
+

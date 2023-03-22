@@ -66,11 +66,11 @@ if (isset($_POST['btn_login'])) {
     $usuario = $_POST['usuario'];
     $password = $_POST['contraseña'];
     // old username and password login is deprecated, use token login
-    $token = '2f0a8929ad515bb67157ead976434d583BCAEAF887B0551E3F8C07590A59533902946CAA';
+    $token = '2f0a8929ad515bb67157ead976434d583C8363C8E81DAD3AC2ED4BFBB1241E41A1C47114';
     $result = $wialon_api->login($token);
     $json = json_decode($result, true);
 
-    if ($usuario == $json['au'] && $password == 'PRUEBAS12') {
+    if ($usuario == $json['au'] && $password == 'Prog23') {
         session_start();
         $_SESSION['user'] = $json['au'];
         header("Location: views/menu.php");

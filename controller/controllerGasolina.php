@@ -1,14 +1,19 @@
 <?php
 
+
 use LDAP\Result;
 
 session_start();
 require "Request.php";
 
+//include_once '../views/Gasolina.php';
 $request = new Request();
 
-switch ($_REQUEST["opcion"]) {
+
+switch($_REQUEST["opcion"]) {
+  
     case "unitList":
+        
         $data = $request->unitList();
 
         if (!empty($data)) {
@@ -16,12 +21,13 @@ switch ($_REQUEST["opcion"]) {
                 $list[] = array(
                     "id" => $data[$i]['id_unidad'],
                     "unidad" => $data[$i]['nombre'],
-                    "seleccionar" => printButton($data[$i]['id_unidad'])
+                    "seleccionar" => printButton($data[$i]['id_unidad']),
+                    "descargar" => ButtonPdf($data[$i]['id_unidad'], $data[$i]['nombre'])
                 );
             }
 
             $result = array(
-                "sEcho" => 1,
+                "sEcho" => 1,   
                 "iTotalRecords" => count($list),
                 "iTotalDisplayRecords" => count($list),
                 "aaData" => $list
@@ -31,7 +37,8 @@ switch ($_REQUEST["opcion"]) {
             $list[] = array(
                 "id" => 'No hay unidades disponibles',
                 "unidad" => ' ',
-                "seleccionar" => " "
+                "seleccionar" => " ",
+                "descargar" => " ",
             );
 
             $result = array(
@@ -42,7 +49,7 @@ switch ($_REQUEST["opcion"]) {
             );
             echo json_encode($result);
         }
-
+        
         break;
 
     case "getLitersDatesBetween":
@@ -134,11 +141,24 @@ switch ($_REQUEST["opcion"]) {
     case 'getGasCostDay':
         echo json_encode($request->gasFillList($_POST['idUnit'],$_POST['date']));
         break;
+    case 'getRecargaComb1':
+        if (!empty($request->getRecargaComb1($_POST['id'], $_POST['date']))) {
+            echo json_encode($request->getRecargaComb1($_POST['id'], $_POST['date']));
+        } else {
+            echo json_encode('error');
+        }
+        break;  
 }
-
 
 function printButton($id)
 {
     $idC = '"' . $id . '"';
-    return "<button type='button' class='btn btn-primary' id='chkUnit" . $id . "' onclick='graphUnit(" . $idC . ")'>Graficar</button>";
+    return "<button type='button' class='btn btn-primary' id='chkUnit" . $id . "' onclick='graphUnit(" . $idC . ")'>Graficar</button>";   
 }
+
+function ButtonPdf($id){
+    $idP = '"' . $id . '"';
+    return "<button  type='button' class='btn btn-primary' id='chkUnit" . $id . "' onclick='Prueba(".$idP.")'> Descargar PDF</button></a>";
+}
+
+

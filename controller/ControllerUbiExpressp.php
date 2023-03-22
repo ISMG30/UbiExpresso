@@ -1,14 +1,15 @@
 <?php
 
-include_once './config/wialon.php';
-
+//include_once '../config/wialon.php';
+ require "config/wialon.php";
 class ControllerUbiExpress {
 
-        var $token ='2f0a8929ad515bb67157ead976434d5832024D2B6FDD58B2372D512352E484120DED7575';
+        var $token ='2f0a8929ad515bb67157ead976434d583C8363C8E81DAD3AC2ED4BFBB1241E41A1C47114';
+        public $wialon_api;
        
        function __construct()
        {
-           //$this -> wialon_api = new Wialon();     
+           $this ->wialon_api = new Wialon();     
        }
 
        function Unidades()
@@ -44,8 +45,12 @@ class ControllerUbiExpress {
                          'user'=>$row['nm']
                       );             
                    }
-                   echo json_encode($array);           
+                  $resu = json_encode($array); 
+                  //echo  json_encode($array); 
+                        
                  } 
+                 //$unidad = json_decode($resu);
+                   return $resu ;    
            }
         }
 
@@ -104,7 +109,10 @@ class ControllerUbiExpress {
                 }
                }  
               }
-                echo json_encode($array);  
+               //echo json_encode($array);  
+                $resu = json_encode($array);
+                //$resul = json_decode($resu);
+               return $resu;
           }
         }
       }
@@ -243,4 +251,5 @@ class ControllerUbiExpress {
         }
       }
 }
+
 ?>

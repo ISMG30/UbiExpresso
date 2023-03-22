@@ -3,7 +3,8 @@
         <tr align="center">
             <th>ID</th>
             <th>UNIDAD</th>
-            <th>SELECCIONAR</th>            
+            <th>SELECCIONAR</th>      
+            <th>DESCARGAR</th> 
         </tr>
     </thead>
     <tbody>
