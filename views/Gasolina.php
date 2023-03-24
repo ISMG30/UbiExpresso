@@ -140,10 +140,10 @@ session_start();
                                     </div>
                                 </div>
                             </div>
-                            <!--div id="travel_cost" class="col-3 text-center my-2">
-                                <label class="form-label text-uppercase fw-bold fs-6">Costo total de ruta:</label>
+                            <!--div id="litters_consumed" class="col-3 text-center my-2">
+                                <label class="form-label text-uppercase fw-bold fs-6">ejemplo</label>
                                 <div class="row justify-content-center">
-                                    <div id="txt_travel_cost" class="col-auto text-center">
+                                    <div id="txt_liters_consumedff" class="col-auto text-center">
 
                                     </div>
                                 </div>
@@ -151,8 +151,8 @@ session_start();
                                     <div class="col-auto text-center">
                                         <a href="#">Ver detalles</a>
                                     </div>
-                                </div>
-                            </div-->
+                                </div-->
+                            </div>
                         </div>
                     </div>
                 </div>
