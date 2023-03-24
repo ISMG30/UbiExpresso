@@ -1,12 +1,12 @@
 <?php
 
-    define("SERVIDOR","localhost");
+    define("SERVIDOR","localhost", true);
 
-    define("DATABASE","ubiexpress");
+    define("DATABASE","ubiexpressf",true);
 
-    define("USERNAME","root");
+    define("USERNAME","root", true);
 
-    define("PASSWORD","admin");
+    define("PASSWORD","1234",true);
 
 
     define("DSN","mysql:host=".SERVIDOR.";dbname=".DATABASE);

@@ -1,97 +1,88 @@
+<?php
+ session_start();
+?>
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Wialon Playground - Track layer</title>
-    <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="https://hst-api.wialon.com/wsdk/script/wialon.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">    
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-</head>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recoridos de las Unidades</title>
+        <?php include_once "../lib/lib.php"?>
+        <link rel="stylesheet" href="../styles/style_gasolina.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </head>
+    <body>
+        <?php include_once "nav.php"?>
+        <?php include_once "lateralMenu.php"?>
+        <main class="mt-5 pt-3">
+            <div class="container-fluid" style="height: auto;">
+               <div class="row justify-content-sm-center mt-5">
+                   <div class="col-sm-auto text-center">
+                       <label class="form-label text-uppercase fw-bold fs-3">Recoridos de las Unidades</label>
+                   </div>
+               </div>
+               <div class="d-flex">
+                    <div id="sidebar">
+                        <div class="contenedor columna">
+                             <ul class="list-group">
+                                 Unidades: <select class="btn btn-secondary Yelow" id="units"><option>Unidades</option></select>
 
-<body >
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.css" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-    <link rel="stylesheet" href="../styles/map.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="styles.css">
-<div class="d-flex">
-  <div id="sidebar">
-	<div class="contenedor columna"> 
-			<ul class="list-group">
+                                 Color : <select class=" btn btn-secondary dropdown-toggle" href="#" id="color">
+                                    <option value="ff0000">Rojo</option>
+                                 </select>
+                                 <div style="text-align: center;">
+                                    <button type="button" class="btn btn-secondary" 
+                                     style="--bs-btn-padding-y: .50rem; --bs-btn-padding-x: .70rem; --bs-btn-font-size: .90rem;" 
+                                     id="build" value="Ejecutae">Ejecutar</button>
+                                </div>
+                                <div>
+                                    Consulta de ruta <input class="contenedor" type="datetime-local" id="fecha" ></input>
 
-			Unidades: <select class=" btn btn-secondary Yelow" id="units"><option>Unidades</option></select>
-		
-			Select track color:<select class="btn btn-secondary dropdown-toggle"  href="#" id="color">
-				<option value="ff0000">Red</option>
-				<option value="00ff00">Green</option>
-				<option value="0000ff">Blue</option>
-				<option value="808000">Olive</option>
-				<option value="800080">Purple</option>
-				<option value="ffff00">Yelow</option>
-				<option value="800000">Maroon</option>
-				<option value="ffffff">White</option>
-				<option value="000000">Black</option>
-			</select>
-			<!--<input class="btn btn-primary btn-sm" id="build" type="button" value="Ejecutar">-->
-			<div style="text-align: center;" >
-			<button type ="button" class="btn btn-secondary"   style="--bs-btn-padding-y: .50rem; --bs-btn-padding-x: .70rem; --bs-btn-font-size: .90rem;" id="build" value="Ejecutae">Ejecutar</button>
-			
-			<br>
-			
-			</ul>
-	<div>
-		Consulta de ruta<input class="contenedor" type="datetime-local" id="fecha" value="15-12-2022 09:00 a.m."></input>
-	</div>
-	
-	</div>
-		<ul class="list-grup">
-			<div class="contenedor  column"> 
-				<table id="tracks">
-					<thead>
-					<td>Unidad</td>
-					<td>Informacion</td>
-					<td>Color</td>
-					<td>Eliminar</td>
-					</thead>
-				</table>
-				
-			</div>
-			
-			
-		</ul>
-</div>
-	<div id="log"></div>
-		  
-    	<!--<div class="contenedorm columnam" id="map" ></div>-->	
-		<div class="content w-100">
-			  <div class="container-xl">
-				<section class="p-3">
-				<div class="container">
-					<div class="row">
-					<div class="col-md-12">
-						<div class="conten" id="map" ></div>
-					</div>
-					</div>
-				</div>
-				</section>
-	</div>
-</div> 
-      
-</body >
+                                </div>
+                                <div>
+                                    <ul class="list-grup">
+                                        <div class="contenedor column">
+                                            <table id="tracks">
+                                                <thead>
+                                                    <td>Unidad</td>
+                                                    <td>Informacion</td>
+                                                    <td>Color</td>
+                                                    <td>Eliminar</td>
+                                                </thead>
+                                            </table>
+                                        </div> 
+                                    </ul>
+                                </div>
+                                <!--div id="log">
+                                    <div class="content w-100">
+                                        <div class="container-xl">
+                                            <section class="p-3">
+                                                <div class="container">
+                                                    <div class="col-md-12">
+                                                        <div id="map" style="height: 580px; width: 580px;"></div>    
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div-->
+                                <div>
+                                    <div id= "map" ></div>
+                                </div>
+                                 
+                             </ul>
+                        </div>
+                    </div>
+               </div>
+               <div  style="height: 580px; width: 580px;" id="map"></div>  
+        </main>
+        <script>
+            // Print message to log
+            var map, markers = {}, tile_layer, layers = {}; // global variables
 
-    <script  type="text/javascript"  >
-		
-  var map, markers = {}, tile_layer, layers = {}; // global variables
-
-// Print message to log
 function msg(text) {
 	  alert(text);
 	  ("#log").prepend(text + "<br/>"); }
@@ -276,12 +267,11 @@ $.ajax({
 
 $(document).ready(function () {
 	
-   var usuario = "<?php echo $user?>";
-   var token = "<?php echo $token"
+   
   	wialon.core.Session.getInstance().initSession("http://local.ubiexpress.net"); // init session
     // For more info about how to generate token check
     // http://sdk.wialon.com/playground/demo/app_auth_token
-	wialon.core.Session.getInstance().loginToken("2f0a8929ad515bb67157ead976434d583BCAEAF887B0551E3F8C07590A59533902946CAA", "", // try to login
+	wialon.core.Session.getInstance().loginToken("2f0a8929ad515bb67157ead976434d583C8363C8E81DAD3AC2ED4BFBB1241E41A1C47114", "", // try to login
 		function (code) { // login callback
 		    // if error code - print error message
 			if (code){ msg(wialon.core.Errors.getErrorText(code)); return; }
@@ -290,5 +280,7 @@ $(document).ready(function () {
             init(); // when login suceed then run init() function
 	});
 })
-  </script>
+        </script>
+    </body>
+    
 </html>

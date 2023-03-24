@@ -1,3 +1,6 @@
+<?php
+ session_start();
+?>
 <!-- offCanvas -->
 <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 
@@ -31,7 +34,7 @@
 
                 </a>
 
-                <a class="nav-link px-3 active" href="#">
+                <a class="nav-link px-3 active" href="MapaUbi.php">
 
                     <span class="me-2">
                     <i class="bi bi-geo-alt-fill"></i>

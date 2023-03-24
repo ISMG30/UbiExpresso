@@ -29,6 +29,11 @@
     <!-- JavaScript BOOTSTRAP 5 -->
     <script src="../lib/DataTables/DataTables-1.13.1/js/dataTables.bootstrap5.min.js"></script>
 
+    <!--maps-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="">
+     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 <!-- ChartJS -->
-<script src="../lib/ChartJS/Chart.min.js"></script>
-<script src="../lib/ChartJS/chartjs-script.js"></script>
+
+    <script src="../lib/ChartJS/Chart.min.js"></script>
+    <script src="../lib/ChartJS/chartjs-script.js"></script>
+

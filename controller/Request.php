@@ -1,8 +1,10 @@
 <?php 
 require "../config/conectionDB.php";
 
+
 class Request{
     public $cnx;
+    
 
     function __construct(){
         $this->cnx = Conexion::ConectarDB();
@@ -22,6 +24,7 @@ class Request{
                 return $datos = [];
             }       
         }else{
+            
             return $datos = [];
         }
     }
@@ -200,8 +203,28 @@ class Request{
             return $datos = [];
         }                
     }
+    function getRecargaComb1($id,$date)
+    {
+        $query = "SELECT U.id_unidad AS id, U.nombre AS unidad, C.litros, C.fecha as fecha_combustible FROM unidad as U 
+        INNER JOIN entradas_combustible AS C ON U.id_unidad = C.id_unidad WHERE U.id_unidad = ? AND 
+        C.fecha = ?  ";
+         $result = $this->cnx->prepare($query);
+         $result->bindParam(1,$id);
+         $result->bindParam(2,$date);
+         if ($result->execute()) {
+             if ($result->rowCount() > 0) {
+                 while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+                     $datos[] = $fila;
+                 }
+                 return $datos;
+             }else{
+                 return $datos = [];
+             }
+         }else{
+             return $datos = [];
+         }
+    }
 
-    
 }
 
 
