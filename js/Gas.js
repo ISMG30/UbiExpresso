@@ -246,6 +246,7 @@ const   loadStatistics = async (id,liters,km,dates) => {
   var div_txt_km_traveled = $('#txt_km_traveled').empty();
   var div_txt_liters_consumed = $('#txt_liters_consumed').empty();
   var div_txt_liters_consumedf = $('#txt_liters_consumedf').empty();
+  var div_txt_liters_consumedff = $('#txt_liters_consumedff').empty();
   if(dates.length == 1){
     refills = await getGasRefillDate(id,dates[0]);
   }else{
@@ -521,11 +522,76 @@ const   loadStatistics = async (id,liters,km,dates) => {
             }
        }
       }
-*/
+    */
+      var fechac;
+   var fechar;
+   var litrosr
+   var arrayfe = [];
+   var arrayfec = [];
+   var arrayfecs = [];
+   var fes = liters[0].fecha_combustible;
+   
+      var lit;
+      var arrysu=[];
+      var fechas ;
+      var arrayLiters=[];
+      recargac.forEach(rec =>{
+            if(fes <= rec.fecha)
+            {
+               var  fe = rec.fecha;
+               lit = rec.litros;
+               arrayfe.push(lit)
+            }
+      });
+      for(var f=0; f<arrayfe.length; f++)
+     { 
+       var sums = parseFloat(arrayfe[f]) + parseFloat(90);
+         arrysu.push(sums)
+     }
+     for( var j=0; j< recargac.length; j++)
+     {
+          fechar = recargac[j].fecha;
+         if(liters[0].fecha_combustible === recargac[j].fecha){
+          litrosr = recargac[j].litros;
+          fechar = recargac[j].fecha;
+         }
+         
+     }
+     for(var i=0; i<liters.length; i++)
+     {
+      fechas=liters[i].fecha_combustible;
+      if(fechas === fechas)
+      { 
+        if(liters[i].check_combustible === 'inicio')
+        {
+          
+            if(fechas <= fechar)
+          {
+            inicio= (parseFloat(liters[i].litros) + parseFloat(arrayfe));
+            i++;
+          }else
+          {
+            inicio= (parseFloat(liters[i].litros));
+            i++
+          }
+         
+        }
+      }
+        if(liters[i].check_combustible === 'inicio'){
+    
+          inicio = parseFloat(liters[i].litros);
+          i++;
+        }else{
+          fin = parseFloat(liters[i].litros);
+        }
+        arrayLiters.push(inicio, fin);
+     }
+
   div_txt_km_traveled.append(`<label class="form-label text-uppercase fw-nomal fs-2">${km_traveled} km</label>`);
   div_txt_liters_consumed.append(`<label class="form-label text-uppercase fw-nomal fs-2">${litros_total.toFixed(2)} L</label>`);  
-  div_txt_liters_consumedf.append(`<label class="form-label text-uppercase fw-nomal fs-2">${monedaMX(costol)} </label>`);  
-      console.log(litros_total);
+  div_txt_liters_consumedf.append(`<label class="form-label text-uppercase fw-nomal fs-2">${monedaMX(costol)} </label>`);
+  //git div_txt_liters_consumedff.append(`<label class="form-label text-uppercase fw-nomal fs-2">${arrayLiters} </label>`);
+      
 }
 
 
@@ -658,13 +724,13 @@ function getDataChart(liters, km, Rliters) {
   //for(var j=0; j<Rliters.length-1; j++){
     // ferecarg = Rliters[0].fecha;
      //recarg = Rliters[0].litros;
-   /* for(var i= 0; i<liters.length; i++){
-      fechac=liters[i].fecha_combustible;
-      if(fechac === fechac)
+    /*for(var i= 0; i<liters.length; i++){
+      fechas=liters[i].fecha_combustible;
+      if(fechas === fechas)
       { 
         if(liters[i].check_combustible === 'inicio')
         {
-          if(fechac === Rliters[0].fecha)
+          if(fechas === Rliters[0].fecha)
           {
             inicio= (parseFloat(liters[i].litros) + parseFloat( Rliters[0].litros));
             i++;
@@ -682,31 +748,48 @@ function getDataChart(liters, km, Rliters) {
     }else{
       fin = parseFloat(liters[i].litros);
     }
-    //arrayLiters.push(inicio, fin);
+    arrayLiters.push(inicio, fin);
   }*/
 
-  for (var i =0; i<liters.length; i++)
-  {
-     fechas = liters[i].fecha_combustible
-     if(fechas === liters[i].fecha_combustible)
-     {
-        if(liters[i].check_combustible === 'inicio')
-        {
-          inicio = (parseFloat(liters[i].litros));
-          i++;
-        }else{
-          fin = (parseFloat(liters[i].litros));
-          i++;
-        }
-        arrayLiters.push(inicio, fin)
+ var fechac= liters[0].fecha_combustible
+ var fechar ;
+ var litrosr;
+ for( var j=0; j< Rliters.length; j++)
+ {
+      fechar = Rliters[j].fecha;
+     if(liters[0].fecha_combustible === Rliters[j].fecha){
+      litrosr = Rliters[j].litros;
+      fechar = Rliters[j].fecha;
      }
      
+ }
+ for(var i= 0; i<liters.length; i++){
+  fechas=liters[i].fecha_combustible;
+  if(fechas === fechas)
+  { 
+    if(liters[i].check_combustible === 'inicio')
+    {
+      if(fechas <= fechar)
+     {if(fechas === fechar){
+        inicio= (parseFloat(liters[i].litros) + parseFloat(litrosr));
+        i++;
+      }else
+      {
+        inicio= (parseFloat(liters[i].litros));
+        i++
+      }}
+    }
+  }
+    if(liters[i].check_combustible === 'inicio'){
+
+      inicio = parseFloat(liters[i].litros);
+      i++;
+    }else{
+      fin = parseFloat(liters[i].litros);
+    }
+    arrayLiters.push(inicio, fin);
   }
 
-  
-//}
-    
-        
   console.log("KM:" + arrayKm);
   console.log("Gas:" + arrayLiters);
  

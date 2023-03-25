@@ -56,6 +56,53 @@ $html= ob_start();
             return $datos = [];
         }
     }
+    function recargagas2()
+    {
+        $id = $_GET['id'];
+        $fechain2=$_GET['startDate']; 
+        $fechafi1=$_GET['endDate'];
+        $query =$this -> cn -> query("SELECT TC.nombre as combustible, E.litros, E.totalCosto as costo, round((E.totalCosto / E.litros),2) as costol, E.fecha FROM entradas_combustible as E INNER JOIN tipo_combustible as TC ON E.tipo_combustible = TC.id_tipo_com WHERE E.id_unidad = $id 
+        AND E.fecha BETWEEN   '$fechain2'  AND '$fechafi1' ORDER BY E.fecha ASC");
+        $query2 = $this -> cn -> query("SELECT U.id_unidad AS id, U.nombre AS unidad, C.litros, C.fecha as fecha_combustible, C.tipo_check as check_combustible FROM unidad as U INNER JOIN combustible AS C ON U.id_unidad = C.id_unidad WHERE U.id_unidad = $id AND C.fecha BETWEEN ' $fechain2' AND ' $fechafi1'");
+        while ($con = $query -> fetch(PDO:: FETCH_NUM))
+        {
+            $arrayre [] = array(
+                //'combustible'=> $con[0],
+                'litros' => $con[1],
+                //'costo' => $con[2],
+                //'costol' => $con[3],
+                'fecha' => $con[4],
+            );
+        }
+        for($i=0; $i<count($arrayre); $i++)
+        {
+            $fechar = $arrayre[$i]['fecha'];
+            $litrosr = $arrayre[$i]['litros'];
+        }
+        while ( $cons = $query2 -> fetch(PDO::FETCH_NUM) )
+        {
+             $arraycom [] = array(
+                'litros' => $cons[2],
+                'fecha' => $cons[3],
+                'check' => $cons[4]
+             );
+        }
+        for($i=0; $i<count($arraycom); $i++)
+        {
+            $fecha = $arraycom[$i]['fecha'];
+            $litros = $arraycom[$i]['litros'];
+            $check = $arraycom[$i]['check'];
+        }
+        if($fecha == $fechar)
+        {
+            if($check == 'inicio')
+            {
+                $result = $litros + $litrosr;
+                $arrayrest [] = array("resul"=>$result);
+            }
+        }
+       //return $arrayrest;
+    }
     function costor()
     {
         $id = $_GET['id'];
@@ -439,13 +486,75 @@ $html= ob_start();
                 </div>
                 <div>
                     <h3 align="center"> <label class="form-label fw-bold"> Grafica</label></h3>
-                    <?php                         
+                    <?php         
+
+                        for($i=0; $i<count($recar); $i++)
+                        {
+                            $litror = $recar[$i]['l'];
+                            $fechaR = $recar[$i]['date'];
+                            $arrayre [] = array("LitroRe" => $litror, "fechaR" => $fechaR);
+                            
+                        }            
+                        $recarga = json_encode($arrayre);
                         for($i=0; $i<count($jsondco);$i++)
                         {
                             $litro = $jsondco[$i]['litros'];
+                            $fechac = $jsondco[$i]['fecha'];
+                            $check = $jsondco[$i]['check'];
                             $arrayl []= array("litro"=>$litro);
+                            $arraye [] = array("litro" => $litro, "fechac" => $fechac, "check" => $check);
                         }
-                        $arraycol = array_column($arrayl,'litro');
+                        $arraycol = array_column($arrayl, 'litro');
+                         $aej = json_encode($arraye);
+                        for($j=0; $j<count($arraye); $j++)
+                        { 
+                            if($arraye[$j]["check"] === 'inicio')
+                            {  
+                                for($i=0; $i<count($arrayre); $i++)
+                                { 
+                                     if($arrayre[$i]["fechaR"] == $arraye[$j]["fechac"])
+                                    {
+                                        $suma = $arrayre[$i]["LitroRe"]+ $arraye[$j]["litro"];    
+                                        $array [] = array('litros' => $suma);
+                                    }else{
+                                        $suma = $arraye[$j]["litro"];
+                                        $array [] = array('litros' => $suma);
+                                    }
+                                } 
+                            } 
+                            if($arraye[$j]["check"] == "fin")
+                             {
+                                    $suma = $arraye[$j]["litro"];
+                                    $array [] = array('litros' =>$suma);   
+                                    
+                                }
+                        }
+                       // echo json_decode($array);
+                       //echo implode(",", $arraycol );
+                        for($j=0; $j<count($arraye); $j++)
+                        {
+                            if($arraye[$j]["check"] === "inicio")
+                            {
+                                if($arraye[$j]["fechac"] === "2023-03-06")
+                                {
+                                    $sum = $arraye[$j]["litro"] + '80';
+                                    $array [] = array('litros' => $sum);
+                                    //echo json_encode( $array);
+                                }else{
+                                    
+                                   $sum = $arraye[$j]["litro"];
+                                   $array [] = array('litros' =>$sum);
+                                
+                                }
+                            }
+                            if($arraye[$j]["check"] === "fin")
+                            {
+                                $sum = $arraye[$j]["litro"];
+                                $array [] = array('litros' =>$sum);
+                            }
+                        }
+                        echo json_encode($array);
+                        
                         $resular = "";
                         foreach($arraycol as $rews)
                         {
@@ -559,7 +668,7 @@ $html= ob_start();
 </body>
 
 </html>
-<?php  
+<!--?php  
     require_once '../lib/dompdf/autoload.inc.php';
  
     use Dompdf\Dompdf;
@@ -575,4 +684,4 @@ $html= ob_start();
     $dompdf->render();
     $dompdf ->stream($unidad,);
     //$dompdf ->stream('Reporte.pdf', array("Attechment"=>false));
-?>
+?-->
