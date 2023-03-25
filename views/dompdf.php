@@ -61,10 +61,10 @@ $html= ob_start();
         $id = $_GET['id'];
         $fechain2=$_GET['startDate']; 
         $fechafi1=$_GET['endDate'];
-        $query =$this -> cn -> query("SELECT TC.nombre as combustible, E.litros, E.totalCosto as costo, round((E.totalCosto / E.litros),2) as costol, E.fecha FROM entradas_combustible as E INNER JOIN tipo_combustible as TC ON E.tipo_combustible = TC.id_tipo_com WHERE E.id_unidad = $id 
+       /* $query =$this -> cn -> query("SELECT TC.nombre as combustible, E.litros, E.totalCosto as costo, round((E.totalCosto / E.litros),2) as costol, E.fecha FROM entradas_combustible as E INNER JOIN tipo_combustible as TC ON E.tipo_combustible = TC.id_tipo_com WHERE E.id_unidad = $id 
         AND E.fecha BETWEEN   '$fechain2'  AND '$fechafi1' ORDER BY E.fecha ASC");
     
-        while ($con = $query -> fetch(PDO:: FETCH_NUM))
+        while ($con = $query -> fetch(PDO::FETCH_NUM))
         {
             $arrayre [] = array(
                 //'combustible'=> $con[0],
@@ -73,20 +73,21 @@ $html= ob_start();
                 //'costol' => $con[3],
                 'fecha' => $con[4],
             );
-        }
-        /*$query = $this -> cn -> query("SELECT C.id_unidad, C.litros ,C.fecha, round((C.litros + EC.litros),2) AS costol FROM  combustible AS C INNER JOIN  entradas_combustible AS EC WHERE C.id_unidad= $id AND C.tipo_check = 'inicio' AND C.fecha BETWEEN $fechain2 AND $fechafi1 AND EC.fecha BETWEEN $fechain2 AND $fechafi1  AND EC.fecha = C.fecha AND EC.id_unidad = $id");
-        while ($con = $query -> fetch(PDO::FETCH_NUM))
-        {
-            $arrayres [] = array(
-                
-                'litros' => $con[1],
-                'fecha' => $con[2],
-                //'costo' => $con[2],
-                'costol' => $con[3],
-                
-            );
         }*/
-        return $arrayre;
+        $query = "SELECT C.id_unidad, C.litros ,C.fecha, round((C.litros + EC.litros),2) AS costol FROM  combustible AS C INNER JOIN  entradas_combustible AS EC WHERE C.id_unidad= $id AND C.tipo_check = 'inicio' AND C.fecha BETWEEN $fechain2 AND $fechafi1  AND EC.fecha = C.fecha AND EC.id_unidad = C.id_unidad";
+        $result = $this->cn->prepare($query);
+        if ($result->execute()) {
+            if ($result->rowCount() > 0) {
+                while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $datos[] = $fila;
+                }
+                return $datos;
+            }else{
+                return $datos = [];
+            }       
+        }else{
+            return $datos = [];
+        }
     }
     function costor()
     {
@@ -221,6 +222,7 @@ $html= ob_start();
   
    //costo de recorido
    $recorido = $request->costor();
+  // echo json_encode($recorido);
    if(!empty($recorido )){
      for($i=0; $i< count($recorido); $i++){
         $listk [] = array(
@@ -473,8 +475,7 @@ $html= ob_start();
                     <h3 align="center"> <label class="form-label fw-bold"> Grafica</label></h3>
                     <?php         
                         $recarga2 = $request->recargagas2();
-                        echo json_encode($recarga2);
-
+                        //echo json_encode($recarga2);
                         for($i=0; $i<count($recar); $i++)
                         {
                             $litror = $recar[$i]['l'];
@@ -490,8 +491,13 @@ $html= ob_start();
                             $arrayl []= array("litro"  => $litro);
                             $arraye [] = array("litro" => $litro, "fechac" => $fechac, "check" => $check);
                         }
-                        $arraycol = array_column($arrayl, 'litro');
+                         $arraycol = array_column($arrayl, 'litro');
                          $aej = json_encode($arraye);
+                         $resultado = array_merge($arrayre, $arraye);
+                         $arrayCR = json_encode($resultado);
+                         echo $arrayCR;
+                        
+                         $arrayJCR = json_decode($arrayCR,true);
                       
                          for($i =0; $i<count($jsondco);$i++)
                          {
@@ -501,21 +507,15 @@ $html= ob_start();
                             $checkc = $jsondco[0]['check'];
                            
                          }
-                         for($i=0; $i<count($arrayf); $i++)
+                         for($i=0; $i<count($arrayJCR); $i++)
                          {
-                             $row = $arrayf[0]['afecha'];
-                            // echo json_encode($row);
-                           if($arrayf[$i]['afecha'] === '2023-03-06')
-                           {
-                                 //cho json_encode($arrayf[$i]['afecha']);
-                           }else{
-                            // echo json_encode($arrayf[$i]['afecha']);
-                           }
-
+                            //$checkCR  = $arrayJCR[$i]["check"];
+                            //$fechaCR = $arrayJCR[$i]['fechac'];
+                            //$fechaCRR = $arrayJCR[$i]['fechaR'];
+                            //git echo json_encode($fechaCRR);
                          }
-                         //echo json_encode($arrayf );
-
-                       //echo implode(",", $arraycol );
+                         
+                        //echo implode(",", $arraycol );
                         for($j=0; $j<count($arraye); $j++)
                         {
                             if($arraye[$j]["check"] === "inicio")
@@ -537,7 +537,7 @@ $html= ob_start();
                                 $array [] = array('litros' =>$sum);
                             }
                         }
-                        //echo json_encode($array);
+                       // echo json_encode($array);
                         
                         $resular = "";
                         foreach($arraycol as $rews)
@@ -572,7 +572,7 @@ $html= ob_start();
                         src="https://quickchart.io//chart?w=360&h=200&v=2.9.4&c={type:'line', data:{labels: [<?php echo $arrkmf[$j];?>], 
                     datasets:[{label: '<?php echo $unidad;?>', borderColor: 'rgb(0, 191, 255)', data:[<?php echo $arrelo[$i];?>],lineTension: 0.2, fill:{target: {value: 30,},}}],}, 
                     options:{legend:{labels:{fontSize: 0, fontSyle: 'normal', fontColor: 'rgb(0, 0, 0)',}}, scales:{xAxes:[{ beginAtZero:true, scaleLabel: {display: true, labelString: 'Kilometraje', fontColor: 'rgb(0, 0, 0)', fontFamily: 'Mono', fontSize: 8,},ticks:{fontSize: 8},}], yAxes:[{ type:'linear', ticks:{fontSize: 8}, scaleLabel: {display: true, labelString: 'Combustible', fontColor: 'rgb(0, 0, 0)', fontFamily: 'Mono', fontSize: 7,},ticks:{fontSize: 8},}],}, 
-                    plugins:{datalabels:{ display: true, align: 'top', offset: 5, labels:{title:{color: 'rgb(0, 0, 0)'},},borderRadius:20,backgroundColor: 'rgb(135, 206, 235)', font:{size: 5,},},}}}">
+                    plugins:{datalabels:{ display: true, align: 'right ', offset: 5, labels:{title:{color: 'rgb(0, 0, 0)'},},borderRadius:20,backgroundColor: 'rgb(135, 206, 235)', font:{size: 5,},},}}}">
                     
                     <?php }} ?>
                 </div>
