@@ -20,7 +20,7 @@ session_unset();
 <body>
     <div id="contenedor">
         <div class="container">
-            <form id="loginform" class="form-horizontal" action="index.php" method="post">
+            <form id="loginform" class="form-horizontal" action="./config/login.php" method="post">
                 <div id="contenedorcentrado">
                     <div id="derecho">
                         <div class="titulo">
@@ -31,13 +31,15 @@ session_unset();
                         <div class="form-group col-sm-10">
                             <label for="inputEmail3" class="col-sm-2 control-label">Usuario</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="usuario" id="inputEmail3" placeholder="Usuario" required>
+                                <!--input type="text" class="form-control" name="usuario" id="inputEmail3" placeholder="Usuario" required-->
+                                <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">Contraseña</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" name="contraseña" id="inputPassword3" placeholder="Contraseña" required>
+                                <!--input type="password" class="form-control" name="contraseña" id="inputPassword3" placeholder="Contraseña" required-->
+                                <input type="password" class="form-control" name="contraseña" id="contraseña" placeholder="Contraseña" required>
                             </div>
                         </div>
                         <div>
@@ -56,30 +58,3 @@ session_unset();
 
 </html>
 
-<?php
-
-include_once("config/wialon.php");
-
-$wialon_api = new Wialon();
-
-if (isset($_POST['btn_login'])) {
-    $usuario = $_POST['usuario'];
-    $password = $_POST['contraseña'];
-    // old username and password login is deprecated, use token login
-    $token = '2f0a8929ad515bb67157ead976434d583C8363C8E81DAD3AC2ED4BFBB1241E41A1C47114';
-    $result = $wialon_api->login($token);
-    $json = json_decode($result, true);
-
-    if ($usuario == $json['au'] && $password == 'Prog23') {
-        session_start();
-        $_SESSION['user'] = $json['au'];
-        header("Location: views/menu.php");
-    } else {
-        echo '
-    <script>
-        toastr["error"]("Revise si el uauario y contraseña estan correctos", "Datos incorrectos");
-    </script>';
-    }
-}
-
-?>

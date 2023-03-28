@@ -1,21 +1,36 @@
 <?php
 
 //include_once '../config/wialon.php';
- require "config/wialon.php";
-class ControllerUbiExpress {
+ require_once "config/wialon.php";
 
-        var $token ='2f0a8929ad515bb67157ead976434d583C8363C8E81DAD3AC2ED4BFBB1241E41A1C47114';
+ //require_once  "config/conexionlogin.php";
+
+ class ControllerUbiExpress {
+            
+        
+      
+        var $token ='9184acef7671d237a45f10b8cf35cb44C71D4D9829D2C22C5805B559B6D5A09A4CB65A11';
         public $wialon_api;
        
        function __construct()
        {
-           $this ->wialon_api = new Wialon();     
+             $this ->wialon_api = new Wialon();    
+           //$this -> base = new index(); 
        }
+       
 
        function Unidades()
        {
            $wialon_api = new Wialon();
-           $result = $wialon_api->login($this->token);
+
+          // $base = new conexionlogin();
+          // $tokeni = $base -> conexion();
+           //$eje = json_encode($tokeni);
+           //echo $eje;
+          //$jsond = json_decode($eje, true);
+          //foreach ($jsond as $toke){
+            $result = $wialon_api->login($this -> token);
+          // }
            $json = json_decode($result, true);
            if(!isset($json['error']))
            {    
@@ -45,12 +60,12 @@ class ControllerUbiExpress {
                          'user'=>$row['nm']
                       );             
                    }
-                  $resu = json_encode($array); 
-                  //echo  json_encode($array); 
+                  //$resu = json_encode($array); 
+                  echo  json_encode($array); 
                         
                  } 
                  //$unidad = json_decode($resu);
-                   return $resu ;    
+                   //return $resu ;    
            }
         }
 
