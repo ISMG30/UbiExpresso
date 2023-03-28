@@ -1,5 +1,5 @@
 <?php 
-    require "controller/ControllerUbiExpressp.php";
+    //require "controller/ControllerUbiExpressp.php";
     require "config/conectar.php";
     
 class Insert {
@@ -8,7 +8,7 @@ class Insert {
     public $consul;
     function __construct()
     {
-        $this-> ControllerUbi = new ControllerUbiExpress();
+        //$this-> ControllerUbi = new ControllerUbiExpress();
         $this-> cnx = Conexion::Conectar();
        
     }

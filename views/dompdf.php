@@ -74,20 +74,19 @@ $html= ob_start();
                 'fecha' => $con[4],
             );
         }*/
-        $query = "SELECT C.id_unidad, C.litros ,C.fecha, round((C.litros + EC.litros),2) AS costol FROM  combustible AS C INNER JOIN  entradas_combustible AS EC WHERE C.id_unidad= $id AND C.tipo_check = 'inicio' AND C.fecha BETWEEN $fechain2 AND $fechafi1  AND EC.fecha = C.fecha AND EC.id_unidad = C.id_unidad";
-        $result = $this->cn->prepare($query);
-        if ($result->execute()) {
-            if ($result->rowCount() > 0) {
-                while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
-                    $datos[] = $fila;
-                }
-                return $datos;
-            }else{
-                return $datos = [];
-            }       
-        }else{
-            return $datos = [];
+        /*$query = "SELECT C.id_unidad, C.litros ,C.fecha, round((C.litros + EC.litros),2) AS costol FROM  combustible AS C INNER JOIN  entradas_combustible AS EC WHERE C.id_unidad= $id AND C.tipo_check = 'inicio' AND C.fecha BETWEEN $fechain2 AND $fechafi1  AND EC.fecha = C.fecha AND EC.id_unidad = C.id_unidad";]*/
+        $query =$this -> cn -> query("SELECT C.id_unidad, C.litros ,C.fecha FROM combustible AS C WHERE C.id_unidad= '103' AND C.tipo_check = 'inicio' AND C.fecha BETWEEN '2023-03-13' AND '2023-03-17'");
+        while ($con = $query -> fetch(PDO::FETCH_NUM))
+        {
+            $arrayre [] = array(
+                //'combustible'=> $con[0],
+                'litros' => $con[1],
+                //'costo' => $con[2],
+                //'costol' => $con[3],
+                'fecha' => $con[2],
+            );
         }
+        return $arrayre;
     }
     function costor()
     {
@@ -475,7 +474,9 @@ $html= ob_start();
                     <h3 align="center"> <label class="form-label fw-bold"> Grafica</label></h3>
                     <?php         
                         $recarga2 = $request->recargagas2();
-                        //echo json_encode($recarga2);
+                        $jsonre= json_encode($recarga2);
+                        $jsondre = json_decode($jsonre, true);
+                        
                         for($i=0; $i<count($recar); $i++)
                         {
                             $litror = $recar[$i]['l'];
@@ -483,6 +484,7 @@ $html= ob_start();
                             $arrayre [] = array("LitroRe" => $litror, "fechaR" => $fechaR);
                         }            
                         $recarga = json_encode($arrayre);
+                        $jsonrecarga = json_decode($recarga,true);
                         for($i=0; $i<count($jsondco);$i++)
                         {
                             $litro = $jsondco[$i]['litros'];
@@ -495,27 +497,56 @@ $html= ob_start();
                          $aej = json_encode($arraye);
                          $resultado = array_merge($arrayre, $arraye);
                          $arrayCR = json_encode($resultado);
-                         echo $arrayCR;
-                        
-                         $arrayJCR = json_decode($arrayCR,true);
+                         //echo $arrayCR;
+            
                       
-                         for($i =0; $i<count($jsondco);$i++)
+                         for($i = 0; $i<count($jsondco);$i++)
                          {
+                           
                             $litroc = $jsondco[$i]['litros'];
                             $fechac = $jsondco[$i]['fecha'];
                             $arrayf [] = array("afecha" => $fechac);
-                            $checkc = $jsondco[0]['check'];
-                           
+                            $checkc = $jsondco[$i]["check"];
+
+                            /*for($j=0; $j<count($jsonrecarga); $j++)
+                            { 
+                                $fechaRecar = $jsonrecarga[$j]["fechaR"];
+                                 $litrosRecar = $jsonrecarga[$j]["LitroRe"];
+                                if($fechac === $fechaRecar)
+                                {
+                                        if($arraye[$i]["check"] === "inicio")
+                                        {   
+                                           $totalLitro  = $jsondco[$i]['litros'] + $litrosRecar;
+                                           
+                                        } else{
+                                            
+                                            $totalLitro = $jsondco[$i]['litros'];
+                                        }
+                                }
+                                echo json_encode($totalLitro);
+                               
+                            }*/
+                            for($u=0; $u<count($jsondre); $u++)
+                              {
+                                    if($fechac === $jsondre[$u]['fecha'] )
+                                    {
+                                       // echo json_encode($jsondre[$u]['fecha'] );
+                                    }
+                              }
                          }
-                         for($i=0; $i<count($arrayJCR); $i++)
-                         {
-                            //$checkCR  = $arrayJCR[$i]["check"];
-                            //$fechaCR = $arrayJCR[$i]['fechac'];
-                            //$fechaCRR = $arrayJCR[$i]['fechaR'];
-                            //git echo json_encode($fechaCRR);
-                         }
-                         
-                        //echo implode(",", $arraycol );
+                        
+                       // $jsontotl = json_encode($totalLitro);
+                        //$jsonTotal = json_decode($jsontotl, true);
+                        /*for ($k =0; $k<count($jsondco); $k++)
+                        {
+                            for($l =0; $l<count($jsonTotal); $l++ )
+                            {
+                                if($fechac === $fechaRecar)
+                                {
+                                    $eje []= array($jsonTotal) ;
+                                }
+                            }
+                        }*/
                         for($j=0; $j<count($arraye); $j++)
                         {
                             if($arraye[$j]["check"] === "inicio")

@@ -1,13 +1,13 @@
 <?php
-//include_once "./controller/ControllerUbiExpressp.php";
+include_once "./controller/ControllerUbiExpressp.php";
 include_once '../UbiExpresso/controller/InsertUbi1.php';
 if(!empty($_POST['opcion'])){
    $opcion = $_POST['opcion'];
-   //$Ubi = new ControllerUbiExpress ();
+   $Ubi = new ControllerUbiExpress ();
     $lubi = new Insert();
    
    switch($opcion){
-    /*case 1: {
+    case 1: {
      
         $dato = $Ubi ->Unidades();
     }
@@ -33,7 +33,7 @@ if(!empty($_POST['opcion'])){
          $dato =$Ubi->Posicion1($user, $fechaI, $fechaF);
      }
      ;
-     break;*/
+     break; 
      case 5:
         {
             $date = $lubi -> getInsert();
