@@ -43,11 +43,12 @@ session_unset();
                             </div>
                         </div>
                         <div>
-                            <input type="checkbox" name="Recordar" /><label>Recordar</label>
+                            <input type="checkbox" name="mantener_sesion" value="si"/>Mantener Seccion <label></label>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" name="btn_login" class="btn btn-default">Ingresar</button>
+                                
                             </div>
                         </div>
                     </div>

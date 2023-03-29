@@ -275,12 +275,23 @@ $.ajax({
    })
 
 $(document).ready(function () {
+
 	
-   
+    
+	
+   /*$.ajax({
+	url: '../config//conexionlogin.php?opcion = conexion ',
+	data: parametros,
+	type: 'post',
+
+	columns:[
+		{data: 'token'}
+	 ]
+   	});*/
   	wialon.core.Session.getInstance().initSession("http://local.ubiexpress.net"); // init session
     // For more info about how to generate token check
     // http://sdk.wialon.com/playground/demo/app_auth_token
-	wialon.core.Session.getInstance().loginToken("2f0a8929ad515bb67157ead976434d583C8363C8E81DAD3AC2ED4BFBB1241E41A1C47114", "", // try to login
+	wialon.core.Session.getInstance().loginToken("9184acef7671d237a45f10b8cf35cb44C71D4D9829D2C22C5805B559B6D5A09A4CB65A11", "", // try to login
 		function (code) { // login callback
 		    // if error code - print error message
 			if (code){ msg(wialon.core.Errors.getErrorText(code)); return; }
