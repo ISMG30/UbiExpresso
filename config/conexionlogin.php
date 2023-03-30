@@ -10,8 +10,8 @@ class conexionlogin{
     }
     function conexion ()
     {
-        $usuario = 'adminhidalgo';//$_POST['usuario'];
-        $password ='Hidalgo99';//$_POST['contraseña'];
+        $usuario = 'PROGRAMACION';//$_POST['usuario'];
+        $password ='Prog23';//$_POST['contraseña'];
         $query = $this->cnx->query("SELECT  * FROM  usuario WHERE usar = '$usuario' AND password='$password' ");
         while ($con = $query->fetch(PDO::FETCH_NUM))
         {

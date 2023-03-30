@@ -12,7 +12,7 @@ session_unset();
     <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="//hst-api.wialon.com/wsdk/script/wialon.js"></script>
     <script type="text/javascript" src="https://hst-api.wialon.com/wsdk/script/wialon.js"></script>
-    <script type="text/javascript" src=" https://kit-api.wialon.com"></script>
+    <!--script type="text/javascript" src=" https://kit-api.wialon.com"></script-->
     <link rel="stylesheet" href="lib/Toastr/toastr.min.css">
     <script src="lib/Toastr/toastr.min.js"></script>
 </head>

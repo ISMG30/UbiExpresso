@@ -224,7 +224,26 @@ class Request{
              return $datos = [];
          }
     }
-
+    function login()
+    {
+        $usuario = $_POST['usuario'];
+        $password = $_POST['contraseña'];
+        $query = "SELECT * FROM usuario WHERE usar = '$usuario' AND password = '$password'";
+        $result = $this -> cnx-> prepare($query);
+        if($result->execute())
+        {
+            if($result ->rowCount() > 0){
+                while ($fila = $result -> fetch(PDO::FETCH_ASSOC)){
+                    $datos[] = $fila;
+                }
+                return $datos;
+            }else{
+                return $datos = [];
+            }
+        }else{
+            return $datos = [];
+        }
+    }
 }
 
 

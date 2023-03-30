@@ -2,7 +2,8 @@
 
 //include_once '../config/wialon.php';
  require_once "config/wialon.php";
- require_once  "config/conexionlogin.php";
+ //require_once  "config/conexionlogin.php";
+// require_once "controller/eje.php";
  class ControllerUbiExpress {
             
         
@@ -15,18 +16,20 @@
              $this ->wialon_api = new Wialon();    
              //$this -> base = new index(); 
        }
-       
 
        function Unidades()
        {
            $wialon_api = new Wialon();
-           $ver= new conexionlogin();
-           $ver2 = $ver -> conexion();
-           $eje = json_encode($ver2);
-           $jsond = json_decode($eje, true);           
-          foreach ($jsond as $toke){
-            $result = $wialon_api->login($toke['token']);
-           }
+           //$ver= new conexionlogin();
+           //$ver2 = $ver -> conexion();
+           //$eje = json_encode($ver2);
+           //$jsond = json_decode($eje, true); 
+           //$ver = new eje();        
+          // $jtoken = $ver-> token();
+           //$jsontok = json_decode($jtoken);
+           //foreach ( $jsontok as $toke){
+            $result = $wialon_api->login($this-> token);
+          // }
            $json = json_decode($result, true);
            if(!isset($json['error']))
            {    
