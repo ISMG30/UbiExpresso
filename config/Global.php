@@ -2,7 +2,7 @@
 
     define("SERVIDOR","localhost", true);
 
-    define("DATABASE","ubiexpress",true);
+    define("DATABASE","ubiexpressf",true);
 
     define("USERNAME","root", true);
 

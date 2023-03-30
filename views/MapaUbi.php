@@ -112,6 +112,18 @@
                     </div>
                </div>
         </main>
+		<?php 
+		   include '../config/conexionlogin.php';
+		   $con = new conexionlogin ();
+		   $token = $con -> conexion();
+		   $jsont = json_encode($token);
+		   $jsondt = json_decode($jsont, true);
+		   foreach ( $jsondt as $dato){
+			   
+			     $array = $dato['token'];
+		   }
+
+		?>
         <script>
             // Print message to log
             var map, markers = {}, tile_layer, layers = {}; // global variables
@@ -299,12 +311,12 @@ $.ajax({
    })
 
 $(document).ready(function () {
-	
-   
+	var tokenu = alert($dato);
+	const miVariableEnJavaScript = "<?php echo $miVariable ?>";
   	wialon.core.Session.getInstance().initSession("http://local.ubiexpress.net"); // init session
     // For more info about how to generate token check
     // http://sdk.wialon.com/playground/demo/app_auth_token
-	wialon.core.Session.getInstance().loginToken("9184acef7671d237a45f10b8cf35cb44C71D4D9829D2C22C5805B559B6D5A09A4CB65A11", "", // try to login
+	wialon.core.Session.getInstance().loginToken(tokenu, "", // try to login
 		function (code) { // login callback
 		    // if error code - print error message
 			if (code){ msg(wialon.core.Errors.getErrorText(code)); return; }
