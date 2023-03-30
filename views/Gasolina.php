@@ -134,7 +134,7 @@ session_start();
 
                                     </div>
                                 </div>
-                                <div class="row justify-content-center">
+                                <div class="row justify-content-center"> 
                                     <div class="col-auto text-center">
                                         <a href="#">Ver detalles</a>
                                     </div>

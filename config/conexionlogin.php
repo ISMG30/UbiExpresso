@@ -12,7 +12,7 @@ class conexionlogin{
     {
         $usuario = 'PROGRAMACION';//$_POST['usuario'];
         $password ='Prog23';//$_POST['contraseña'];
-        $query = $this->cnx->query("SELECT  * FROM  usuario WHERE usar = '$usuario' AND password='$password' ");
+        $query = $this->cnx->query("SELECT  * FROM  usuario WHERE user = '$usuario' AND password='$password' ");
         while ($con = $query->fetch(PDO::FETCH_NUM))
         {
             $arraylogin [] = array(
