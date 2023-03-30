@@ -1,26 +1,29 @@
+/*borde izquierdo */
 #sidebar {
-	width: 40%;
-	height: 100vh;
+	width: 50%;
+	height: 200vh;
 	background: #b8d2ec;
   }
+
 /*body {
 	margin: 300;
 	padding: 200;
 }*/
 #map{ 
 	
-	width:890px; 
+	width:590px; 
 	height:750px;
 		 
 }
 #log, #tracks tr td { 
 	border: 2px solid #ffffff00; 
 }
+/*unidad informe*/
 #tracks { 
-	width: 500px; 
+	width: 200px; 
 }
 .close_btn { 
-	text-align: center; 
+	text-align: auto; 
 	vertical-align: middle; 
 	cursor: pointer; 
 }

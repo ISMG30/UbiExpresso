@@ -103,6 +103,20 @@
 		<div><input type="hidden" name="opcion" value="7"></div>
 		<div><button class="subit">OBTENER JSON co</div>
 	</form>
+	<form action="../controller/eje.php
+	" method="post">
+		<h4> Unidades </h4>
+				<pre class="prettyprint">
+					<code>
+						method="post"
+						name="opcion" value="5"
+						
+					</code>
+				</pre>
+		<div><input type="hidden" name="opcion" value="9"></div>
+		<div><button class="subit">OBTENER JSON </div>
+	</form>
+
 
 
 <script>

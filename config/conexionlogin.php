@@ -10,8 +10,8 @@ class conexionlogin{
     }
     function conexion ()
     {
-        $usuario = $_POST['usuario'];
-        $password = $_POST['contraseña'];
+        $usuario = 'PROGRAMACION';//$_POST['usuario'];
+        $password ='Prog23';//$_POST['contraseña'];
         $query = $this->cnx->query("SELECT  * FROM  usuario WHERE usar = '$usuario' AND password='$password' ");
         while ($con = $query->fetch(PDO::FETCH_NUM))
         {
@@ -21,8 +21,12 @@ class conexionlogin{
                 'token' => $con[3],
             );
         }
-        //return $arraylogin;
-        echo json_encode($arraylogin);
+        return $arraylogin;
+        //echo json_encode($arraylogin);
     }
-}
+   
+}  
+ /* $ver= new conexionlogin();
+  $ver2 = $ver -> conexion();
+   echo json_encode($ver2);*/
 ?>

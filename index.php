@@ -12,7 +12,7 @@ session_unset();
     <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="//hst-api.wialon.com/wsdk/script/wialon.js"></script>
     <script type="text/javascript" src="https://hst-api.wialon.com/wsdk/script/wialon.js"></script>
-    <script type="text/javascript" src=" https://kit-api.wialon.com"></script>
+    <!--script type="text/javascript" src=" https://kit-api.wialon.com"></script-->
     <link rel="stylesheet" href="lib/Toastr/toastr.min.css">
     <script src="lib/Toastr/toastr.min.js"></script>
 </head>
@@ -43,11 +43,12 @@ session_unset();
                             </div>
                         </div>
                         <div>
-                            <input type="checkbox" name="Recordar" /><label>Recordar</label>
+                            <input type="checkbox" name="mantener_sesion" value="si"/>Mantener Seccion <label></label>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" name="btn_login" class="btn btn-default">Ingresar</button>
+                                
                             </div>
                         </div>
                     </div>

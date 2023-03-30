@@ -2,34 +2,33 @@
 
 //include_once '../config/wialon.php';
  require_once "config/wialon.php";
-
  //require_once  "config/conexionlogin.php";
-
+// require_once "controller/eje.php";
  class ControllerUbiExpress {
             
         
       
-        var $token ='9184acef7671d237a45f10b8cf35cb44C71D4D9829D2C22C5805B559B6D5A09A4CB65A11';
-        public $wialon_api;
+       var $token = '9184acef7671d';//'9184acef7671d237a45f10b8cf35cb44C71D4D9829D2C22C5805B559B6D5A09A4CB65A11';
+        public $wialon_api; 
        
        function __construct()
        {
              $this ->wialon_api = new Wialon();    
-           //$this -> base = new index(); 
+             //$this -> base = new index(); 
        }
-       
 
        function Unidades()
        {
            $wialon_api = new Wialon();
-
-          // $base = new conexionlogin();
-          // $tokeni = $base -> conexion();
-           //$eje = json_encode($tokeni);
-           //echo $eje;
-          //$jsond = json_decode($eje, true);
-          //foreach ($jsond as $toke){
-            $result = $wialon_api->login($this -> token);
+           //$ver= new conexionlogin();
+           //$ver2 = $ver -> conexion();
+           //$eje = json_encode($ver2);
+           //$jsond = json_decode($eje, true); 
+           //$ver = new eje();        
+          // $jtoken = $ver-> token();
+           //$jsontok = json_decode($jtoken);
+           //foreach ( $jsontok as $toke){
+            $result = $wialon_api->login($this-> token);
           // }
            $json = json_decode($result, true);
            if(!isset($json['error']))
@@ -60,12 +59,12 @@
                          'user'=>$row['nm']
                       );             
                    }
-                  //$resu = json_encode($array); 
-                  echo  json_encode($array); 
+                  $resu = json_encode($array); 
+                  //echo  json_encode($array); 
                         
                  } 
                  //$unidad = json_decode($resu);
-                   //return $resu ;    
+                   return $resu ;    
            }
         }
 
@@ -167,8 +166,8 @@
                  $params=array(
                    'layerName'=>'Unidad',       //Nombre  de la capa
                    'itemId'=>$id,               //Id de la unidad  cuyo mensajes se solicitaran
-                   'timeFrom'=>$fechaIn,         //Comienzo del intervalo
-                   'timeTo'=>$fechafi,           //Final del intervalo
+                   'timeFrom'=>$fechaIn,        //Comienzo del intervalo
+                   'timeTo'=>$fechafi,          //Final del intervalo
                    'tripDetector'=>1,           //Usa detector del viaje 0 = no, 1 = si 
                    'trackColor'=>'trip',        //Color de la Pista en formato ARGB
                    'trackWidth'=>2,             //Anchura de la línea de seguimiento en píxeles
