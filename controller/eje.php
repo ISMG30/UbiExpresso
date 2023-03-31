@@ -53,7 +53,7 @@ $ver = new conexionlogin();
        $arrayToken =  $rowes['token'];
        
  }
- //echo json_encode($a.
+ echo json_encode($arrayToken)
 ?>
 
 <script type="text/javascript">
@@ -61,12 +61,14 @@ $ver = new conexionlogin();
     
     var div_txt_km_traveled = $('#txt_km_traveled').empty();
     const miVariableEnJavaScript = "<?php echo $arrayToken ?>";
-    
+    const miPrueba ="<?php echo $prueba?>";
     // Justo aquí estamos pasando la variable ----^
     // Y ya la tenemos desde JavaScript. Podemos hacer cualquier cosa con ella
     // console.log("El contenido de la variable es: " + miVariableEnJavaScript);
-    div_txt_km_traveled.append(`<label class="form-label text-uppercase fw-nomal fs-2">${miVariableEnJavaScript} km</label>`);
+    div_txt_km_traveled.append(`<label class="form-label text-uppercase fw-nomal fs-2">${miVariableEnJavaScript}`);
+    div_txt_km_traveled.append(`<label class="form-label text-uppercase fw-normal fs-2">${Prueba}`)
 </script>
+
 </body>
 
 </html>

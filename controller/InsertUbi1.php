@@ -13,6 +13,32 @@ class Insert {
         $this-> cnx = Conexion::Conectar();
        
     }
+    function Inserttoken ()
+    {
+        $consulta = $this-> ControllerUbi -> token();
+        $dato = json_decode($consulta, true);
+        $query =$this -> cnx -> query("SELECT * FROM usuario");
+        while ($row = $query->fetch(PDO::FETCH_NUM))
+        {
+            $array [] = array(
+                 'user' => $row[1],
+                 'password' => $row[2],
+                 'token' => $row[3],
+            );
+            
+        }
+        $jsonto = json_encode($array);
+        $jsondto = json_decode($jsonto, true);
+        for($j=0; $j<count($jsondto); $j++)
+        {
+            for($i=0; $i<count($dato); $i++)
+            {
+                $arrayto = $dato[$i]['h'];
+                $arrayto = $dato['userID'];
+            }
+        }
+          echo json_encode($arrayto);
+    }
     function getUnidades()
     {
         $consulta= $this-> ControllerUbi -> Unidades();

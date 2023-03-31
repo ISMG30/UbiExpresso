@@ -21,9 +21,9 @@
                     <label class="from-label text-uppercase fw-bold fs-3">Unidades</label>
                  </div>
                </div>
-               <div class="row justify-content-center mt-4" style="height: 100%;">
-                   <div id="table" class="col-auto text-center" style="height: 100%;">
-                        <?PHP include_once "tables/tableUnidades.php "?>
+               <div class="row justify-content-center mt-4" style="height: 100%;" align="center">
+                   <div id="table" class="col-auto text-center" style="height: 100%;" align="center">
+                        <?php include_once "tables/tableUnidades.php "?>
 
                    </div>                
                </div>

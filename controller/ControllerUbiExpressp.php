@@ -8,7 +8,7 @@
             
         
       
-       var $token = '9184acef7671d';//'9184acef7671d237a45f10b8cf35cb44C71D4D9829D2C22C5805B559B6D5A09A4CB65A11';
+       var $token = '2f0a8929ad515bb67157ead976434d583C8363C8E81DAD3AC2ED4BFBB1241E41A1C47114';//'9184acef7671d237a45f10b8cf35cb44C71D4D9829D2C22C5805B559B6D5A09A4CB65A11';
         public $wialon_api; 
        
        function __construct()
@@ -17,6 +17,30 @@
              //$this -> base = new index(); 
        }
 
+       function token ()
+       {    $wialon_api = new Wialon();
+            $resul = $wialon_api-> login($this -> token);
+            $json = json_decode($resul, true);
+            if(!isset($json['errore'])){
+
+              $userId = $json['user']['id'];
+              $params = array(
+                'userId' => $userId,
+              );
+              $dato = $wialon_api->token_list(json_encode($params));
+              $resul = json_decode($dato);
+              if(!isset($resul['error']))
+              {
+                 foreach($resul as $row)  
+                $array [] = array(
+                     'token' => $row['h'],
+                     'userID' => $userId,
+                );
+              }
+            }
+            return  $array;
+            //echo json_encode($array);
+       }
        function Unidades()
        {
            $wialon_api = new Wialon();
