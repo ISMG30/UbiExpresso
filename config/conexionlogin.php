@@ -10,21 +10,31 @@ class conexionlogin{
     }
     function conexion ()
     {
-        $usuario = 'PROGRAMACION';//$_POST['usuario'];
-        $password ='Prog23';//$_POST['contraseña'];
+        $usuario = $_POST['usuario'];
+        $password =$_POST['contraseña'];
         $query = $this->cnx->query("SELECT  * FROM  usuario WHERE user = '$usuario' AND password='$password' ");
         while ($con = $query->fetch(PDO::FETCH_NUM))
         {
             $arraylogin [] = array(
-                'user' => $con[1],
-                'password' => $con[2],
-                'token' => $con[3],
+                'user' => $con[2],
+                'password' => $con[3],
+                'token' => $con[4],
             );
         }
         return $arraylogin;
         //echo json_encode($arraylogin);
     }
-   
+   function unidades()
+   {
+      $query = $this -> cnx ->query("SELECT * FROM unidad " );
+      while($con = $query->fetch(PDO::FETCH_NUM))
+      {
+        $arrayUnidad [] = array(
+            'id' => $con[0],
+            'nombre' => $con[1],
+        );
+      }
+   }
 }  
  /* $ver= new conexionlogin();
   $ver2 = $ver -> conexion();

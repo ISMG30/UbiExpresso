@@ -67,7 +67,7 @@
 		<div><button class="subit">OBTENER JSON co</div>
 	</form>
 	<form action="../Panel.php" method="post">
-		<h4> Insertar Km </h4>
+		<h4> Token</h4>
 				<pre class="prettyprint">
 					<code>
 						method="post"

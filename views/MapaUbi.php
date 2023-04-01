@@ -32,7 +32,7 @@
         <?php include_once "lateralMenu.php"?>
         <main class="mt-5 pt-3">
             <div class="container-fluid" style="height: auto;">
-               <div class="row justify-content-sm-center mt-5">
+               <div class="row justify-content-sm-center mt-4">
                    <div class="col-sm-auto text-center">
                        <label class="form-label text-uppercase fw-bold fs-3">Recoridos de las Unidades</label>
                    </div>
@@ -41,7 +41,7 @@
                     <div id="sidebar">
                         <div class="contenedor columna">
                              <ul class="list-group">
-								<table class="table">
+								<!--table id="table_gas_refill" class="table table-striped table-boreded" style="width:100%">
 									<thead>
                                 <th> Unidades</th> 
 								<th><select class="btn btn-secondary Yelow" id="units"><option>Unidades</option></select></th>
@@ -54,7 +54,7 @@
                                     <option value="ff0000">Rojo</option></th>
 									</tr>
 									<tr>
-										<th>Consulta de ruta</th>
+										<th>Consulta de ruta </th>
 										<th><input class="contenedor" type="datetime-local" id="fecha" ></input></th>
 									</tr>
 									<tr>
@@ -62,14 +62,91 @@
 										<th>Informacion</th>
 										<th>Color</th>
 										<th>Eliminar</th>
-
 									</tr>
-									<table id="tracks">
-
-									</table>
 								</tbody>
+								</table-->
+								<!--nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+									<div class="position-sticky"-->
+									<!--div class="list-group list-group-flush mx-3 mt-4"-->
+										<!-- Collapse 1 -->
+										<!--a
+										class="list-group-item list-group-item-action py-2 ripple"
+										aria-current="true"
+										data-mdb-toggle="collapse"
+										href="#collapseExample1"
+										aria-expanded="true"
+										aria-controls="collapseExample1"
+										>
+										<i class="fas fa-tachometer-alt fa-fw me-3"></i><span>RECORIDOS DE LAS UNIDADES</span>
+										</a-->
+										<!-- Collapsed content -->
+										<!--ul id="collapseExample1" class="collapse show list-group list-group-flush">
+										<li class="list-group-item py-1">
+											<a href="" class="text-reset">UNIDADES</a>
+											<th><select class="btn btn-secondary Yelow" id="units"><option>Unidades</option></select></th>
+										</li>
+										<li class="list-group-item py-1">
+											<a href="" class="text-reset">COLOR </a>
+										</li-->
+										<!--li class="list-group-item py-1">
+											<a href="" class="text-reset">CONSULTA DE COLOR</a>
+										</li-->
+										<!--li class="list-group-item py-1">
+											<a aligen="center">CONSULTA DE RUTA</a><th><input class="contenedor" type="datetime-local" id="fecha" ></input></th>
+											<table>
+												<th>UNIDAD	</th>
+												<th>INFORMACION</th>
+												<th>ELIMINAR</th>
+											</table>
+
+										</li>
+									</div>
+								</nav-->
+								<div class="row justify-content-center mt-4" style="height:100%;">
+							   		<div id="tabla" class="col-auto text-center" style="height: 100%;">
+									 <table id ="tableUnits2" class="table table-striped table-boreded"  style="width:100%;">
+										<thead>
+											<tr align="center">
+												<th>RECORIDOS DE LAS UNIDADES</th>
+												
+											</tr>
+											<tbody>
+												<tr align="center">
+													<th>UNIDAD</th>
+													<th><select class="btn btn-secondary Yelow" id="units"><option>Unidades</option></select></th>
+												</tr>
+												<tr align="center">
+													<th>CONSULTA POR FECHA</th>
+													<th><input class="contenedor" type="datetime-local" id="fecha" ></input></th>
+												</tr>
+											</tbody>
+										</thead>
+									</table>
+									</div>
+							    </div>
+								<div class="row justify-content-center mt-4" style="height:100%;">
+							   		<div id="tabla" class="col-auto text-center" style="height: 100%;">
+									 <table id ="tracks" class="table table-striped table-boreded"  style="width:100%;">
+										<thead>
+											
+												<th>CONSULTA DE RUTA</th>
+												
+											
+											<tbody>
+												<tr align="center">
+													<th>UNIDAD</th>
+													<th>INFORMACION</th>
+													<th>ELIMINAR</th>
+												</tr>
+												
+											</tbody>
+										</thead>
+									</table>
+									</div>
+							    </div>
+
+								<table id="tracks">
 								</table>
-                                  
                                  </select>
                                  <div style="text-align: center;">
                                     <button type="button" class="btn btn-secondary" 
@@ -77,7 +154,7 @@
                                      id="build" value="Ejecutae">Ejecutar</button>
                                 </div>
 							 </ul>
-                                <div>
+                                <!--div>
                                     <ul class="list-grup">
                                         <div class="contenedor column">
                                             <table id="tracks">
@@ -92,7 +169,7 @@
                                     </ul>
                                 </div>
 								</div>
-					</div>
+					</div-->
 								<div id="log"></div>
 									
 									<!--<div class="contenedorm columnam" id="map" ></div>-->	
@@ -166,8 +243,9 @@ function show_track() {
       from = Math.round(new Date(cur_day.getFullYear(), cur_day.getMonth(), cur_day.getDate()) /1000), // get begin time - beginning of day
       to = from + 3600 * 24 - 1, // end of day in seconds
       unit = sess.getItem(unit_id), // get unit by id
-      color = $("#color").val() || "ffffff"; // track color
-		if (!unit) return; // exit if no unit
+      //color = $("#color").val() || "ffffff"; // track color
+	 color = "0000ff" || "ffffff";	
+	  if (!unit) return; // exit if no unit
 
 		// check the existence info in table of such track 
 		if (document.getElementById(unit_id))
@@ -312,11 +390,11 @@ $.ajax({
 
 $(document).ready(function () {
 	var tokenu = alert($dato);
-	const miVariableEnJavaScript = "<?php echo $miVariable ?>";
+	/*const miVariableEnJavaScript = "<!--?php echo $miVariable ?-->";*/
   	wialon.core.Session.getInstance().initSession("http://local.ubiexpress.net"); // init session
     // For more info about how to generate token check
     // http://sdk.wialon.com/playground/demo/app_auth_token
-	wialon.core.Session.getInstance().loginToken(tokenu, "", // try to login
+	wialon.core.Session.getInstance().loginToken("2f0a8929ad515bb67157ead976434d583C8363C8E81DAD3AC2ED4BFBB1241E41A1C47114", "", // try to login
 		function (code) { // login callback
 		    // if error code - print error message
 			if (code){ msg(wialon.core.Errors.getErrorText(code)); return; }

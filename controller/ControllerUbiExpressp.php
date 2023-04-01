@@ -1,14 +1,12 @@
 <?php
 
 //include_once '../config/wialon.php';
- require_once "config/wialon.php";
+ require "config/wialon.php";
  //require_once  "config/conexionlogin.php";
 // require_once "controller/eje.php";
  class ControllerUbiExpress {
             
-        
-      
-       var $token = '9184acef7671d';//'9184acef7671d237a45f10b8cf35cb44C71D4D9829D2C22C5805B559B6D5A09A4CB65A11';
+       var $token = '2f0a8929ad515bb67157ead976434d583C8363C8E81DAD3AC2ED4BFBB1241E41A1C47114';//'9184acef7671d237a45f10b8cf35cb44C71D4D9829D2C22C5805B559B6D5A09A4CB65A11';
         public $wialon_api; 
        
        function __construct()
@@ -17,6 +15,34 @@
              //$this -> base = new index(); 
        }
 
+       function token ()
+       {    $wialon_api = new Wialon();
+            $result = $wialon_api-> login($this -> token);
+            $json = json_decode($result, true);
+            if(!isset($json['errore'])){
+
+              $userId = $json['user']['id'];
+              $params = array(
+                'userId' => $userId,
+              );
+              $dato = $wialon_api->token_list(json_encode($params));
+              $resul = json_decode($dato, true);
+              if(!isset($resul['error']))
+              {  
+                $array = [];
+                foreach($resul as $row)
+                {
+                  $array [] =array(
+                    'token1' => $row['h'],
+                    'userId' => $userId, 
+                  );
+                }
+              }
+              $resu = json_encode($array); 
+            }
+            return  $resu;
+            //echo $resu;
+       }
        function Unidades()
        {
            $wialon_api = new Wialon();
@@ -59,12 +85,11 @@
                          'user'=>$row['nm']
                       );             
                    }
-                  $resu = json_encode($array); 
                   //echo  json_encode($array); 
-                        
                  } 
                  //$unidad = json_decode($resu);
-                   return $resu ;    
+                 $resu = json_encode($array);    
+                  return $resu ;    
            }
         }
 

@@ -708,7 +708,7 @@ function getDataChart(liters, km, Rliters) {
   var COLORS_RGB = [
     'rgba(255, 99, 132, 0.9)',
     'rgba(36, 132, 234, 0.6)',
-    'rgba(255, 205, 86, 0.9)'
+    'rgba(255, 205, 86, 0.9)',
   ];
   var inicio =0;
   var fin;
@@ -777,7 +777,8 @@ function getDataChart(liters, km, Rliters) {
       {
         inicio= (parseFloat(liters[i].litros));
         i++
-      }}
+      }
+     }
     }
   }
     if(liters[i].check_combustible === 'inicio'){
