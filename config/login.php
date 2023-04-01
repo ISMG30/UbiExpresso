@@ -38,16 +38,36 @@
         $token  =  $datos['token'];
         $result = $wialon_api->login($token);
         $json = json_decode($result, true);
+        $params = array(
+          'spec' => array(
+              'itemsType' => 'avl_unit',
+              'propName'=> 'sys_name',
+              'propValueMask' => '*',
+              'sortType' => 'sys_name'
+          ),
+          'force' => 1,
+          'from' => 0,
+          'to'=>0,
+          'flags' => 0x1
+        ); 
+        $resunidad = $wialon_api->core_search_items(json_encode($params));
+        $jsonunidad = json_decode($resunidad,true);
+        for($i=0; $i<count($jsonunidad); $i++)
+        {
+            
+        }
+
+
         //echo json_encode($json);
       /* if($json['au'] = 'null')
        {*/
              //header("Location: ../index.php");
-             if ($datos['user'] == $json['au'] && $datos['password'] == $datos['password']) {
+            if ($datos['user'] == $json['au'] && $datos['password'] == $datos['password']) {
           
               session_start();
               $_SESSION['user'] = $json['au'];
               header("Location: ../views/menu.php");
-          } else {
+          }else{
               echo '
           <script>
               toastr["error"]("Revise si el uauario y contraseña estan correctos", "Datos incorrectos");

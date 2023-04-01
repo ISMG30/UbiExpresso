@@ -21,28 +21,55 @@ class Insert {
         while ($row = $query->fetch(PDO::FETCH_NUM))
         {
             $array [] = array(
-                 'user' => $row[1],
-                 'password' => $row[2],
-                 'token' => $row[3],
+                 'userId' => $row[1],
+                 'user' => $row[2],
+                 'password' => $row[3],
+                 'token' => $row[4],
             );
             
         }
         $jsonto = json_encode($array);
+        echo $jsonto;
         $jsondto = json_decode($jsonto, true);
-        for($j=0; $j<count($jsondto); $j++)
-        {
-            for($i=0; $i<count($dato); $i++)
+       
+            for($i=0; $i<count($jsondto); $i++)
             {
-                $arrayto = $dato[$i]['h'];
-                $arrayto = $dato['userID'];
+            
+                $arraytok = $dato[0]['token1'];
+                $arrayto = $dato[0]['userId'];
+                $userId = $jsondto[$i]['userId'];
+                $token = $jsondto[$i]['token'];
+                echo json_encode($token);
+                if($userId == $arrayto)
+                {
+                   // echo $jsondto[0]['token'];
+                    if($token > '' )
+                     {   echo 'Ya exite el token',  $token ;
+                        foreach($dato as $datos)
+                        {
+                          //echo   $query = " INSERT INTO usuario(id, userId, user, password, token) VALUES ('".$datos['token1']."')";
+                        } 
+                     }else{
+                        foreach($dato as $datos)
+                        {
+                           //$query = " INSERT INTO usuario(token) VALUES ('".$datos['token1']."')";
+                           $query = "UPDATE usuario  SET  token = '".$datos['token1']."' WHERE userId = '".$userId."'";
+                            $resu = $this-> cnx ->prepare($query);
+                            $resu-> execute();                            
+                        } 
+                     }
+                }else{
+                    /*echo  'No hay registro';*/
+                    echo 'Ya exite el usuario', $userId;
+                }
             }
-        }
-          echo json_encode($arrayto);
+           
+          //echo json_encode($arrayto);
     }
     function getUnidades()
     {
         $consulta= $this-> ControllerUbi -> Unidades();
-        $dato = json_decode($consulta, true);        
+        $dato = json_decode($consulta, true);       
         $query  = $this -> cnx->query("SELECT * FROM unidad");
         while ($row = $query->fetch(PDO::FETCH_NUM)) 
         {
@@ -59,13 +86,14 @@ class Insert {
             {
                 $arrayc  = $dato[$i]['id'];
                 $ver = $jsondu[$j]['id'];
+               
                 if($ver == $arrayc)
                 {
                     echo "YA ESTA REGISTRADO ";
-                }else{
+                }/*else{
                    foreach($dato as $datos)
                    {
-                     $queryi="INSERT INTO unidad(id_unidad,nombre) VALUES ('".$datos['id']."','".$datos['user']."')";
+                    // $queryi="INSERT INTO unidad(id_unidad,nombre) VALUES ('".$datos['id']."','".$datos['user']."')";
                      $resu = $this -> cnx -> prepare($queryi);
                      $resu -> execute();
                      if($resu)
@@ -75,7 +103,7 @@ class Insert {
                         echo "ERROR";
                      }
                    }
-                }
+                }*/
             }      
         }
     }
