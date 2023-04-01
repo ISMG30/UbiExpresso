@@ -10,6 +10,7 @@
     //$conex = new Request();
     //$logi = $conex -> login();
     $login = $conexion->conexion();
+    $unidad = $conexion -> unidades();
     /*if(!empty($logi))
     {
       for($i=0; $i<count($logi); $i++)
@@ -54,9 +55,14 @@
         $jsonunidad = json_decode($resunidad,true);
         for($i=0; $i<count($jsonunidad); $i++)
         {
-            
-        }
+            $arrayunidad = array(   
+             'nm'=> $jsonunidad['items'][$i]['nm'],
+             'id' => $jsonunidad['items'][$i]['id'],
+            );
+              $jsonem = json_encode($arrayunidad);  
 
+        }
+        
 
         //echo json_encode($json);
       /* if($json['au'] = 'null')
@@ -77,7 +83,7 @@
          //echo 'Si hay Ubiexrpress';
        
       if( header("Location: ../index.php") == '')
-      {echo '
+   git   {echo '
       <script>
           toastr["error"]("No hay Ubiexpress", "Sin conexion");
       </script>';
