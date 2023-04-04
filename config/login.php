@@ -3,32 +3,21 @@
   //session_start();
  require_once "../config/wialon.php";
  require_once "../config/conexionlogin.php";
- //require_once "../controller/Request.php";
+ 
 
     $wialon_api = new Wialon();
     $conexion = new  conexionlogin();
-    //$conex = new Request();
-    //$logi = $conex -> login();
+    
     $login = $conexion->conexion();
     $unidad = $conexion -> unidades();
-    /*if(!empty($logi))
-    {
-      for($i=0; $i<count($logi); $i++)
-      {
-        $usuario [] = array(
-           'user' => $logi[$i]['usar'],
-           'password' => $logi[$i]['password'],
-           'token' => $logi[$i]['token'],
-           
-        );
-      }
-    }*/
+    
     $jsonco= json_encode($login);
     $jsondco =json_decode($jsonco, true);
 
-    //echo json_encode($jsondco);
+    $jsonunidad = json_encode($unidad);
+    $jsondunidad =json_decode($jsonunidad, true);
 
-    
+   
     if (isset($_POST['btn_login'])) {
         
     foreach($jsondco  as $datos){
@@ -39,8 +28,8 @@
         $token  =  $datos['token'];
         $result = $wialon_api->login($token);
         $json = json_decode($result, true);
-        $params = array(
-          'spec' => array(
+        /*$params = array(
+          'spec' => array (
               'itemsType' => 'avl_unit',
               'propName'=> 'sys_name',
               'propValueMask' => '*',
@@ -51,56 +40,39 @@
           'to'=>0,
           'flags' => 0x1
         ); 
-        $resunidad = $wialon_api->core_search_items(json_encode($params));
-        $jsonunidad = json_decode($resunidad,true);
-        for($i=0; $i<count($jsonunidad); $i++)
+        $resunida = $wialon_api->core_search_items(json_encode($params));
+        $jsonunit= json_decode($resunida,true);
+        for($i=0; $i<count($jsonunit); $i++)
         {
-            $arrayunidad = array(   
-             'nm'=> $jsonunidad['items'][$i]['nm'],
-             'id' => $jsonunidad['items'][$i]['id'],
-            );
-              $jsonem = json_encode($arrayunidad);  
-
-        }
-        
-
-        //echo json_encode($json);
-      /* if($json['au'] = 'null')
-       {*/
-             //header("Location: ../index.php");
-            if ($datos['user'] == $json['au'] && $datos['password'] == $datos['password']) {
+          $ubiunidad = $jsonunit['items'][$i]['nm'];
+          $ubiid = $jsonunit['items'][$i][
+            'id'];
           
-              session_start();
-              $_SESSION['user'] = $json['au'];
-              header("Location: ../views/menu.php");
-          }else{
-              echo '
-          <script>
-              toastr["error"]("Revise si el uauario y contraseña estan correctos", "Datos incorrectos");
-          </script>';
-          }
-       /*}else{
-         //echo 'Si hay Ubiexrpress';
-       
-      if( header("Location: ../index.php") == '')
-   git   {echo '
-      <script>
-          toastr["error"]("No hay Ubiexpress", "Sin conexion");
-      </script>';
-      }
-       }*/
-        /*if ($datos['user'] == $json['au'] && $datos['password'] == $datos['password']) {
-          
-            session_start();
-            $_SESSION['user'] = $json['au'];
-            header("Location: ../views/menu.php");
-        } else {
-            echo '
-        <script>
-            toastr["error"]("Revise si el uauario y contraseña estan correctos", "Datos incorrectos");
-        </script>';
+          for($j=0; $j<count($jsondunidad);  $j++)
+            {
+             
+               $bdnombre = $jsondunidad[$j]['nombre'];
+               $bdid =  $jsondunidad[$j]['id'];
+               if($bdid === $ubiid)
+               {
+                 
+               }
+            }
+             
+
         }*/
-         
+        if ($datos['user'] == $json['au'] && $datos['password'] == $datos['password']) {
+                            
+          session_start();
+          $_SESSION['user'] = $json['au'];
+          header("Location: ../views/menu.php");
+
+        }else{
+          echo '
+        <script>
+          toastr["error"]("Revise si el uauario y contraseña estan correctos", "Datos incorrectos");
+        </script>';
+        }      
 
     }
     if(!empty($_POST['mantener_sesion']))
