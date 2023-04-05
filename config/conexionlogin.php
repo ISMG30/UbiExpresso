@@ -22,7 +22,6 @@ class conexionlogin{
             );
         }
         return $arraylogin;
-        //echo json_encode($arraylogin);
     }
    function unidades()
    {
@@ -37,7 +36,5 @@ class conexionlogin{
       return $arrayUnidad;
    }
 }  
- /* $ver= new conexionlogin();
-  $ver2 = $ver -> conexion();
-   echo json_encode($ver2);*/
+
 ?>
