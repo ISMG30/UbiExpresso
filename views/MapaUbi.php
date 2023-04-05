@@ -389,7 +389,7 @@ $.ajax({
    })
 
 $(document).ready(function () {
-	var tokenu = alert($dato);
+	//var tokenu = alert($dato);
 	/*const miVariableEnJavaScript = "<!--?php echo $miVariable ?-->";*/
   	wialon.core.Session.getInstance().initSession("http://local.ubiexpress.net"); // init session
     // For more info about how to generate token check
