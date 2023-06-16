@@ -1,7 +1,9 @@
 <?php 
    
     require "controller/ControllerUbiExpressp.php";
-    require "config/conectar.php";
+    //require "config/conectar.php";
+    require "config/conectionDB.php";
+    
     
 class Insert {
     public $ControllerUbi;
@@ -10,7 +12,7 @@ class Insert {
     function __construct()
     {
         $this-> ControllerUbi = new ControllerUbiExpress();
-        $this-> cnx = Conexion::Conectar();
+        $this-> cnx = Conexion::ConectarDB();
        
     }
     function Inserttoken ()
@@ -42,7 +44,7 @@ class Insert {
                 echo json_encode($token);
                 if($userId == $arrayto)
                 {
-                   // echo $jsondto[0]['token'];
+                   
                     if($token > '' )
                      {   echo 'Ya exite el token',  $token ;
                         foreach($dato as $datos)
@@ -126,8 +128,7 @@ class Insert {
          $jsonkm = json_encode($arrayKm);
          $jsondkm = json_decode($jsonkm, true);
         
-                $kmc= $jsondkm[3]['tipo_check'];
-                $kmcf = $jsondkm[2]['fecha'];
+               
                 $fecha = date('Y-m-d');
                 for($i=0; $i<count($jsondkm); $i++)
                 {
@@ -186,7 +187,7 @@ class Insert {
             }
             if($comcf <= $fecha)
             {
-                if($comcf == 'fin')
+                if($comco == 'fin')
                 {
                     foreach($dato as $datos)
                     {
@@ -204,7 +205,6 @@ class Insert {
                     }
                 }
             }
-    }
-}
+    }}
 
 ?>

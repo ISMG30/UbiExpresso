@@ -1,13 +1,14 @@
 <?php
-include_once "./controller/ControllerUbiExpressp.php";
-//include_once '../UbiExpresso/controller/InsertUbi1.php';
+//include_once "./controller/ControllerUbiExpressp.php";
+
+include_once './controller/InsertUbi1.php';
 if(!empty($_POST['opcion'])){
    $opcion = $_POST['opcion'];
-  $Ubi = new ControllerUbiExpress ();
-    //$lubi = new Insert();
+ // $Ubi = new ControllerUbiExpress ();
+    $lubi = new Insert();
    
    switch($opcion){
-    case 1: {
+   /* case 1: {
      
         $dato = $Ubi -> Unidades();
     }
@@ -34,20 +35,28 @@ if(!empty($_POST['opcion'])){
      }
      ;
      break; 
-    /* case 5:
+     case 5:
         {
             $date = $lubi -> Inserttoken();
         }
-        break;
+        break;*/
     case 6:
         {
             $date = $lubi -> InsertCombustible ();
         }
         break;
+   
     case 7: 
         {
+            
+            $date = $lubi -> getInsert ();
+        }
+        break;
+   case 8:
+        {
             $date = $lubi -> getUnidades();
-        }*/
+        }
+        break;
    }
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
- session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -189,7 +189,7 @@
                     </div>
                </div>
         </main>
-		<?php 
+		<!--?php 
 		   include '../config/conexionlogin.php';
 		   $con = new conexionlogin ();
 		   $token = $con -> conexion();
@@ -200,7 +200,7 @@
 			     $array = $dato['token'];
 		   }
 
-		?>
+		?-->
         <script>
             // Print message to log
             var map, markers = {}, tile_layer, layers = {}; // global variables

@@ -282,12 +282,11 @@ const   loadStatistics = async (id,liters,km,dates) => {
       i++;
     }
     if(liters[i].check_combustible === 'fin'){
-
       fin = parseFloat(liters[i].litros);
       i++;
     }
   }
-  oresta = inicio - fin
+     oresta = inicio - fin
   
   }
 
@@ -523,7 +522,7 @@ const   loadStatistics = async (id,liters,km,dates) => {
        }
       }
     */
-      var fechac;
+    /*  var fechac;
    var fechar;
    var litrosr
    var arrayfe = [];
@@ -585,7 +584,7 @@ const   loadStatistics = async (id,liters,km,dates) => {
           fin = parseFloat(liters[i].litros);
         }
         arrayLiters.push(inicio, fin);
-     }
+     }*/
 
   div_txt_km_traveled.append(`<label class="form-label text-uppercase fw-nomal fs-2">${km_traveled} km</label>`);
   div_txt_liters_consumed.append(`<label class="form-label text-uppercase fw-nomal fs-2">${litros_total.toFixed(2)} L</label>`);  

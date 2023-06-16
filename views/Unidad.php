@@ -92,7 +92,7 @@
 		<div><button class="subit">OBTENER JSON co</div>
 	</form>
 	<form action="../Panel.php" method="post">
-		<h4> Unidades </h4>
+		<h4> Insertar kilometraje </h4>
 				<pre class="prettyprint">
 					<code>
 						method="post"
